@@ -129,13 +129,13 @@
     </li>
   </ul>
 
-  <form action="#" method="post" class="form-signin">
+  <form name="login" action="index.php" method="post" class="form-signin">
     <input type="hidden" name="_csrf_token" value="Qa9evAsiOEdd0uDl85M49H_OSDYA55nhtsvuYxJAEoI" />
     <div class="login-container">
       <h1>Connectez-vous sur votre compte</h1><br>
-      <form>
-        <label for="username">Email</label>
-        <input type="text" id="username" name="_username" value="" required="required" />
+      <form >
+        <label for="email">Email</label>
+        <input type="text" id="username" name="email" value="" required="required" />
         <label for="password">Mot de passe</label>
         <input type="password" id="password" name="_password" required="required" />
 
@@ -147,7 +147,7 @@
         </p>
 
         <div>
-          <input type="submit" class="btn " id="_submit" name="_submit" value="Connexion" />
+          <input type="submit" class="btn " id="_submit" name="login-btn" value="Connexion" />
         </div>
 
       </form>
