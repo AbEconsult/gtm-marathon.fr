@@ -20,7 +20,7 @@ if (!isset($_SESSION['email'])) {
         echo "<br> 10.b) je passe le test dans index roles=admin et la valeur de roles =  " . $_SESSION['roles'] . " et je pars dans controlUsers";
         $action = "accueil";
     } elseif ($_SESSION['roles'] === 'moderator' or $_SESSION['roles'] === "driver") {
-        echo "<br> 10.b) je passe le test dans index roles =admin ou user et la valeur de us_id_serv =  " . $_SESSION['roles'] . "et je pars dans controlTickets";
+        echo "<br> 10.c) je passe le test dans index roles =admin ou user et la valeur de us_id_serv =  " . $_SESSION['roles'] . "et je pars dans controlTickets";
         echo "<br> je suis dans index et le test roles = $_SESSION(['roles'])";
         $action = "accueil";
 
@@ -37,13 +37,13 @@ if (!isset($_SESSION['email'])) {
 }
 switch ($action) {
     case "accueil":
-        echo "(1) - Je passe par l'action 'accueil' de l'index";
+        echo "<br> (1) - Je passe par l'action 'accueil' de l'index";
         require "vue/view_accueil.php";
         break;
     case "moderateur":
         echo "(1) - Je passe par l'action 'moderateurs' de l'index";
         $titre = "Gestion des Moderateurs";
-        require "vue/modele.php";
+        // require "vue/modele.php";
         require "vue/Moderators/moderateurs.php";
         break;
     case "conducteur":

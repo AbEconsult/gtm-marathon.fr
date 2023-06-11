@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
   session_start();
 }
 echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
+$acces="";
 $contenu_log = '
 <!DOCTYPE html>
 <html>
@@ -190,5 +191,5 @@ $contenu_log = '
   </script>
 </body>
 </html>';
-
+// require "vue/modele.php";
 

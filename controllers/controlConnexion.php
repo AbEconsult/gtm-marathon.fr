@@ -9,6 +9,7 @@ $mdp = "";
 $loginError = "";
 $action = "";
 $contenu = "";
+
 // require_once("vue/modele.php");
 require_once("modeles/modele.inc.php");
 echo "<br> (5) je repasse dans - controllers/controlConnexion - pour la 2eme fois, après modele.inc";
@@ -54,12 +55,14 @@ if (!empty($_POST['email']) and !empty($_POST['pwd'] )) {
                 $_SESSION['email'] = $tUsers[0]['email'];
                 $_SESSION['pwd'] = $tUsers[0]['pwd'];
                 $_SESSION['roles'] = $tUsers[0]['roles'];
-                echo "<br> 11.b) Email ou mot de passe correct... et la valeur de roles est  = " . $_SESSION['roles'];
+                echo "<br> 11.b) Email ".$_SESSION['email']." ou mot de passe correct... et la valeur de roles est  = " . $_SESSION['roles'];
+                $acces = true;
                 // Contrôle quel est le type de profil pour afficher les pages d'accueil correspondantes
                 if ($_SESSION['roles'] === "admin") {
                     echo "<br> 11.c) je passe le test de la vérification de roles = admin dans controlConnexion et la valeur est égale à " . $_SESSION['roles'];
                     // $action = 'list_Users';
                     // require_once("controllers/controlUsers.php");
+                    $contenu="";
                     $action = 'accueil';
                 } elseif ($_SESSION['roles'] === "moderator" or $_SESSION['roles'] === "driver") {
                     echo "<br> 11.d) je passe le test de la vérification de roles  = hotline ou dev dans controlConnexion et la valeur est égale à " . $_SESSION['roles'];
@@ -70,6 +73,7 @@ if (!empty($_POST['email']) and !empty($_POST['pwd'] )) {
             } else {
                 $loginError = "Email ou mot de passe incorrect...";
                 echo "<br> 11.b.1) " . $loginError . " ...";
+                $acces=false;
                 // echo "<br> 11.b.1) $loginError... et la valeur de roles est  = " . $_SESSION['roles'];
                 $contenu = "";
                 require_once "login.php";
@@ -81,6 +85,7 @@ if (!empty($_POST['email']) and !empty($_POST['pwd'] )) {
                       }  else {
                         $loginError = "Veuillez compléter tous les champs...";
                         echo "<br> 11.b.2) $loginError... et la valeur de roles est  = " . $_SESSION['roles'];
+                        $acces=false;
                             ?><script>
                 alert(<?php $loginError ?>);
             </script><?php

@@ -50,7 +50,10 @@
 <body>
 
     <?php
-   if (isset($_SESSION['email'])){ $contenu = $contenu_log;}
+
+   if ($acces ===1 or empty($acces)){ 
+    $contenu = $contenu_log;
+    }
    echo $contenu;
     ?>
 
