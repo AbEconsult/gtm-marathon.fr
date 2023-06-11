@@ -12,13 +12,13 @@ require_once("modeles/modele.inc.php");
 
 // vérifie si le post du bouton submit existe et contrôle si le mail et le mot de passe n'est pas vide sinon ça affiche la page de connexion
 if (isset($_POST['login-btn'])) {
-    if (!empty($_POST['mail']) AND !empty($_POST['password'])) {
+    if (!empty($_POST['mail']) AND !empty($_POST['pwd'])) {
         $mail = htmlspecialchars($_POST['mail']);
-        $password = $_POST ['password'];
+        $pwd = $_POST ['pwd'];
 
         $user = Connexion($email);
         
-        if (count($user) === 1 AND password_verify($password, $user[0]['password'])) {
+        if (count($user) === 1 AND password_verify($pwd, $user[0]['pwd'])) {
             $_SESSION['nom'] = $user[0]['nom_user'];
             $_SESSION['prenom'] = $user[0]['prenom_user'];
             $_SESSION['mail'] = $user[0]['email'];

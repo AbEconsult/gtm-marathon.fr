@@ -50,7 +50,7 @@
 
 <body>
 
-    <?php echo $contenu_alert ?>
+    <?php //echo $contenu_alert ?>
     <?php
     echo $contenu;
     ?>

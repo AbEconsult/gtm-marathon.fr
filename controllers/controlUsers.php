@@ -1,12 +1,12 @@
 <?php
-require_once("modeles/modele.inc.php");
+require_once("modeles/modele.inc.users.php");
 
-if ($controUsers === 0){
-    $controUsers=1;
-}else {
-    $controUsers++;
-}
-echo "<br> passage controlUsers = ".$controUsers;
+// if ($controUsers === 0){
+//     $controUsers=1;
+// }else {
+//     $controUsers++;
+// }
+// echo "<br> passage controlUsers = ".$controUsers;
 
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -21,7 +21,7 @@ switch ($action) {
 echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
         // 1 - récupérer la liste des utilisateurs
 echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
-        $tb_users = listUsers();
+        $tb_users = listUsers($email);
         // 2 - afficher la liste des utilisateurs
         $titre = "Utilisateurs";
 echo "<br> 4ème passage";
@@ -41,10 +41,10 @@ echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après a
         $prenom = ucfirst(strtolower($_POST['prenom']));
         $service = $_POST['service'];
         $email = strtolower($prenom.'.'.$nom.'@belcom.com');
-        $mdp = password_hash($_POST ['mdp'], PASSWORD_DEFAULT);
+        $pwd = password_hash($_POST ['pwd'], PASSWORD_DEFAULT);
 
         // 2 - Enregistrer le nouveau client dans la BDD
-        $resultat = insUser($nom,$prenom,$service,$email,$mdp);
+        $resultat = insUser($nom,$prenom,$service,$email,$pwd);
 
         // 3 - Afficher le résultat à l'utilisateur
         $titre = "Ajout d'un utilisateur";
@@ -55,7 +55,7 @@ echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après a
     case 'list_User':
         // 1 - Afficher un formulaire
         $titre = "Rechercher un utilisateur";
-        $tb_users = listUsers();
+        $tb_users = listUsers($email);
         require_once("Vue/view_formUser.php");
         break;
 
@@ -67,7 +67,7 @@ echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après a
         $email = strtolower($_POST['email']);
 
         // 2 - Rechercher les utilisateurs correspondants dans la BDD
-        $tb_users = ajoutUser($nom, $prenom,$service,$email,$mdp);
+        $tb_users = ajoutUser($nom, $prenom,$service,$email,$pwd);
 
         // 3 - Afficher les utilisateurs correspondants
         $titre = "Liste des utilisateurs trouvés :";
@@ -106,7 +106,7 @@ echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après a
                 
         // 2 - Modifier le client dans la BDD
         $user = ["id_user" => $id_user, "nom" => $_POST['nom'], "prenom" => $_POST['prenom'], 
-                    "mdp" => password_hash($_POST ['mdp'], PASSWORD_DEFAULT), "service"=> $_POST['service']];
+                    "pwd" => password_hash($_POST ['pwd'], PASSWORD_DEFAULT), "service"=> $_POST['service']];
     
         $resultat = majUser($user);
     

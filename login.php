@@ -8,7 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
-  <title>Marathon - Welcome!</title>
+  <title>GTM-Marathon - Welcome!</title>
 
   <style>
 
@@ -107,14 +107,14 @@
       <a href="#" data-target="slide-out" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
-      <a href="index.html" class="brand-logo">GTM-MARATHON</a>
+      <a href="index.php" class="brand-logo">GTM-MARATHON</a>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
         <span></span>
 
         <li>
-          <a href="login.html" class="blue">Connexion</a>
+          <a href="login.php" class="blue">Connexion</a>
         </li>
 
       </ul>
@@ -124,20 +124,20 @@
   <ul id="slide-out" class="sidenav">
 
     <li>
-      <a href="login.html" class="blue">Connexion</a>
+      <a href="login.php" class="blue">Connexion</a>
     </li>
     </li>
   </ul>
 
-  <form name="login" action="index.php" method="post" class="form-signin">
+  <form name="login-btn" action="index.php" method="post" class="form-signin">
     <input type="hidden" name="_csrf_token" value="Qa9evAsiOEdd0uDl85M49H_OSDYA55nhtsvuYxJAEoI" />
     <div class="login-container">
       <h1>Connectez-vous sur votre compte</h1><br>
-      <form >
+      <form>
         <label for="email">Email</label>
         <input type="text" id="username" name="email" value="" required="required" />
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="_password" required="required" />
+        <label for="pwd">Mot de passe</label>
+        <input type="password" id="password" name="pwd" required="required" />
 
         <p>
           <label>
@@ -154,6 +154,11 @@
 
     </div>
   </form>
+
+  <?php if(!empty($loginError)){?>
+  <div class="text-danger"><?= $loginError;?></div>
+  <?php }?>
+  
   <main class="container"></main>
 
   <script type="text/javascript">

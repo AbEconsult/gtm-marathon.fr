@@ -2,7 +2,7 @@
 require_once("controllers/controlConnexion.php");
 
 if (!isset($_SESSION['email'])) {
-    // echo "<br> 7) je passe dans le test de contenu de la variable email si vide dans index pour la 1ère fois, donc elle est vide et je ne suis pas identifié ";
+    // echo "<br> 7) je passe dans le test de contenu de la variable email si non vide dans index pour la 1ère fois, donc elle est vide et je ne suis pas identifié ";
     // echo "<br> 8) je pars dans le - controller/controlConnexion - pour la 1ère fois ";
     // echo "<br> 9) index - après le test ";
     // echo $index;
@@ -12,15 +12,15 @@ if (!isset($_SESSION['email'])) {
     require_once("controllers/controlConnexion.php");
 } else {
     // echo "<br> 10.a) je suis dans index et la valeur de us_id_serv =  " . $_SESSION['roles'];
-    if ($_SESSION['roles'] === 'ROLE_SUPER_ADMIN') {
-        echo "<br> 10.b) je passe le test dans index 1=admin et la valeur de roles =  " . $_SESSION['roles'] . " et je pars dans controlUsers";
-        require_once("controllers/controlUsers.php");
-    } elseif ($_SESSION['roles'] === 3 or $_SESSION['roles'] === 4) {
-        echo "<br> 10.b) je passe le test dans index 3 ou 4=users et la valeur de us_id_serv =  " . $_SESSION['roles'] . "et je pars dans controlTickets";
+    if ($_SESSION['roles'] === 'admin') {
+        echo "<br> 10.b) je passe le test dans index roles=super_admin et la valeur de roles =  " . $_SESSION['roles'] . " et je pars dans controlUsers";
+        $action="moderateur";
+    } elseif ($_SESSION['roles'] === 'moderator' or $_SESSION['roles'] === "driver") {
+        echo "<br> 10.b) je passe le test dans index roles =admin ou user et la valeur de us_id_serv =  " . $_SESSION['roles'] . "et je pars dans controlTickets";
         echo "<br> je suis dans index et le test roles = $_SESSION(['roles'])";
         $action = "accueil";
         
-        require_once("controllers/controlTickets.php");
+        // require_once("controllers/controlTickets.php");
     } else {
         echo "<br> je suis dans index et ne passe ni dans controlConnexion ni dans id_service qui n'existe pas ";
         $action = "accueil";
@@ -29,7 +29,8 @@ if (!isset($_SESSION['email'])) {
         if (isset($_GET['action'])) {
             $action = $_GET['action'];
         }
-        
+    }
+}       
         switch ($action) {
             case "accueil":
                 echo "(1) - Je passe par l'action 'accueil' de l'index";
@@ -60,7 +61,7 @@ if (!isset($_SESSION['email'])) {
                 require "vue/Missions/missions.php";
                 break;
     }
-}
+
 
 
         // case "list":
@@ -123,4 +124,4 @@ if (!isset($_SESSION['email'])) {
 
         //     require "Vue/view_accueil.php";
         //     break;
-}
+// }
