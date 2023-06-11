@@ -67,7 +67,7 @@ $contenu = '<style type="text/css">
 
             <li><a href="#">commercial@gtm-marathon.fr</a></li>
             <li class="orange">
-                <a href="/logout">
+                <a href="index.php?action=logout">
                     Déconnexion
                     <i class="material-icons right"> exit_to_app</i>
                 </a>

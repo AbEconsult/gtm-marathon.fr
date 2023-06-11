@@ -1,4 +1,6 @@
 <?php
+
+echo "<br> (4) je suis dans modele.inc après controlConnexion";
 /**
  * Summary of connexion
  * @return mixed
@@ -8,19 +10,19 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    echo "<br> (4) je suis connecté";
-    // try {
+    echo "<br> (*) je suis connecté à la base marathon";
+    try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         $mysql = new PDO($dsn, $user, $password, $options);
-        echo "<br> (2) je suis dans  - modeles/modele.inc - pour la 1ère fois et j'ai une erreur";
         
         return $mysql;
-     
-    // } catch (Exception $e) {
-    //     // en cas erreur on affiche un message et on arrete tout
-    //     die('<h1>Erreur de connexion : </h1>' . $e->getMessage());
-    // }
+        
+    } catch (Exception $e) {
+        echo "<br> (**) je suis dans  - modeles/modele.inc - pour la 1ère fois et j'ai une erreur";
+        // en cas erreur on affiche un message et on arrete tout
+        die('<h1>Erreur de connexion : </h1>' . $e->getMessage());
+    }
 }
 
 /**
@@ -40,7 +42,6 @@ function getConnexion(string $mail) {
     $recupUser->execute([":mail" => $mail]);
 
     $tUsers = $recupUser->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($tUsers);
 
     $recupUser->closeCursor();
     $mysql = null;

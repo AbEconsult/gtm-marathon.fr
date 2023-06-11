@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION)) {
+  echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
+  session_start();
+}
+echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
+$contenu_log = '
 <!DOCTYPE html>
 <html>
 
@@ -102,7 +109,13 @@
     }
   </style>
   <nav>
+    <?php
+    // if (!isset($_SESSION)) {
+      
+    //   session_start();
+  }
 
+  ?>
     <div class="nav-wrapper">
       <a href="#" data-target="slide-out" class="sidenav-trigger">
         <i class="material-icons">menu</i>
@@ -114,7 +127,7 @@
         <span></span>
 
         <li>
-          <a href="login.php" class="blue">Connexion</a>
+          <a href="index.php" class="blue">Connexion</a>
         </li>
 
       </ul>
@@ -124,7 +137,7 @@
   <ul id="slide-out" class="sidenav">
 
     <li>
-      <a href="login.php" class="blue">Connexion</a>
+      <a href="index.php" class="blue">Connexion</a>
     </li>
     </li>
   </ul>
@@ -162,18 +175,20 @@
   <main class="container"></main>
 
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener("DOMContentLoaded", function () {
       window.onerror = function (error) {
         //alert(JSON.stringify(error));
       };
       App.init();
 
       document
-        .querySelectorAll('form')
+        .querySelectorAll("form")
         .forEach(function (item) {
-          item.setAttribute('autocomplete', 'off')
+          item.setAttribute("autocomplete", "off")
         })
     });
   </script>
 </body>
-</html>
+</html>';
+
+

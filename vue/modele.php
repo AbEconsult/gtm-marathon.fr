@@ -47,12 +47,11 @@
 </head>
 <header><?php require_once "vue/view_header.php" ?></header>
 
-
 <body>
 
-    <?php //echo $contenu_alert ?>
     <?php
-    echo $contenu;
+   if (isset($_SESSION['email'])){ $contenu = $contenu_log;}
+   echo $contenu;
     ?>
 
 </body>
