@@ -97,4 +97,5 @@ $contenu = '
     ></div>
   </body>
 </html>';
+
 require "vue/modele.php";

@@ -1,5 +1,6 @@
 <?php
 require_once "login.php";
+require_once "vue/modele.php";
 echo "<br> (2) je passe dans index - pour la 1ère fois et vais dans controlConnexion ";
 require_once("controllers/controlConnexion.php");
 // echo "<br> (6) je repasse dans index - pour la 2ème fois et vais dans login et la valeur de action = " . $action . ", et email = " . $_SESSION['email'] . " et roles =" . 'roles= ' . $_SESSION['roles'];
@@ -11,14 +12,14 @@ if (!isset($_SESSION['email'])) {
     // echo "<br> 9) index - après le test ";
     // echo $index;
     // require_once("vue/view_connexion.php");
-
+    require "login.php";
     // echo "<br> 10) je reviens de - controller/controlConnexion - pour la 1ère fois et lance - controllers/controlConnexion";
     require_once("controllers/controlConnexion.php");
 } else {
     // echo "<br> 10.a) je suis dans index et la valeur de us_id_serv =  " . $_SESSION['roles'];
     if ($_SESSION['roles'] === 'admin') {
         echo "<br> 10.b) je passe le test dans index roles=admin et la valeur de roles =  " . $_SESSION['roles'] . " et je pars dans controlUsers";
-        $action = "accueil";
+        $action = "moderateur";
     } elseif ($_SESSION['roles'] === 'moderator' or $_SESSION['roles'] === "driver") {
         echo "<br> 10.c) je passe le test dans index roles =admin ou user et la valeur de us_id_serv =  " . $_SESSION['roles'] . "et je pars dans controlTickets";
         echo "<br> je suis dans index et le test roles = $_SESSION(['roles'])";

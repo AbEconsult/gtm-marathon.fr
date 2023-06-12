@@ -50,11 +50,13 @@
 <body>
 
     <?php
+echo $acces;
 
-   if ($acces ===1 or empty($acces)){ 
+   if ($acces === 1 or empty($acces)){ 
+    $contenu="";
     $contenu = $contenu_log;
     }
-   echo $contenu;
+        echo $contenu;
     ?>
 
 </body>
