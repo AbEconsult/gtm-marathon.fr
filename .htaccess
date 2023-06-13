@@ -7,7 +7,7 @@ RewriteRule ^ajouter-utilisateur$ index.php?action=addUser [L]
 RewriteRule ^rechercher-utilisateur$ index.php?action=searchUsers [L]
 
 RewriteRule ^accueil$ index.php?action=listeMissions [L]
-RewriteRule ^dossiers-cli$ index.php?action=listMissionsCli [L]
+RewriteRule ^listeclient$ index.php?action=listCustomer [L]
 RewriteRule ^detail-dossier$ index.php?action=detailMission [L]
 RewriteRule ^supprimer-Mission$ index.php?action=delMission [L]
 RewriteRule ^modifier-Mission$ index.php?action=modifMission [L]

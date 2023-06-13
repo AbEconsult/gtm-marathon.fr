@@ -34,8 +34,6 @@ ob_start();
                         width: 100%
                     }
 
-                    
-
                     nav {
                         display: none;
                     }
@@ -49,7 +47,6 @@ ob_start();
                     .container {
                         width: 98%;
                     }
-
                 }
             </style>
     </div>
@@ -63,35 +60,34 @@ ob_start();
 
     <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo" id="compagny">GTM MARATHON</a>
+        <a href="#" class="brand-logo" id="compagny">GTM-MARATHON</a>
         <?php if ($_SESSION['roles'] === "admin") { ?>
             <div class="container">
                 <div class="navbar-nav m-8">
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="drivers">Conducteurs</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil sass.html">Accueil</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('ajouter-client'); ?>" href="newcli">Client</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('ajouter-utilisateur'); ?>" href="newUser">Conducteurs</a></li>
                         <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a></li>
                     </ul>
                     <ul class="sidenav" id="mobile-demo">
-                        <li><a href="accueil">Accueil</a></li>
-                        <li><a href="customers">Client</a></li>
-                        <li><a href="drivers">Conducteurs</a></li>
-                        <li><a href="missions">Missions</a></li>
+                        <li><a href="sass.html">Sass</a></li>
+                        <li><a href="badges.html">Components</a></li>
+                        <li><a href="collapsible.html">Javascript</a></li>
+                        <li><a href="mobile.html">Mobile</a></li>
                     </ul>
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            var elems = document.querySelectorAll('.sidenav');
-                            var instances = M.Sidenav.init(elems, options);
-                        });
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var elems = document.querySelectorAll('.sidenav');
+                        var instances = M.Sidenav.init(elems, options);
+                    });
 
-                        // Or with jQuery
+                    // Or with jQuery
 
-                        $(document).ready(function() {
-                            $('.sidenav').sidenav();
-                        });
-                    </script>
+                    $(document).ready(function() {
+                        $('.sidenav').sidenav();
+                    });
+                </script>
                 </div>
                 <?php if ($_SESSION['roles'] === "moderator") { ?>
                     <div class="navbar-nav m-8">
@@ -116,7 +112,7 @@ ob_start();
                     </span>
                     <!-- </span> -->
                 </div>
-
+                
             </div>
 
 

@@ -46,7 +46,7 @@
 
 </head>
 <<header>
-    <? $menu; ?>
+    <?= $menu; ?>
     </header>
 
     <main>

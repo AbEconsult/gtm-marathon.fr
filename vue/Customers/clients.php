@@ -1,6 +1,14 @@
 <?php
-echo "<br> (2) - Je passe dans 'clients'";
-$contenu = '
+echo "<br> (2) - Je passe dans Clients";
+if (!isset($_SESSION)) {
+  echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
+  echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
+  session_start();
+}
+
+ob_start();
+
+?>
   <body>
     <main class="container">
       <h3>Listes des clients</h3>
@@ -159,4 +167,8 @@ $contenu = '
     <div id="sp-notification-wrapper"></div>
   </body>
 </html>';
-require "vue/modele.php";
+<?
+$menu = ob_get_clean();
+
+require_once('vue/view_header.php');
+require_once('vue/modele.php');

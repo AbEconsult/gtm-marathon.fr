@@ -16,7 +16,7 @@ if (isset($_POST['login-btn'])) {
         $mail = htmlspecialchars($_POST['mail']);
         $pwd = $_POST ['pwd'];
 
-        $user = Connexion($email);
+        $user = Connexion($mail);
         
         if (count($user) === 1 AND password_verify($pwd, $user[0]['pwd'])) {
             $_SESSION['nom'] = $user[0]['nom_user'];

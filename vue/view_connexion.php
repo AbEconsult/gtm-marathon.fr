@@ -130,20 +130,20 @@ ob_start();
         <span></span>
 
         <li>
-          <a href="index.php" class="blue">Connexion</a>
+          <a href="index.php" class="blue">GTM-MARATHON</a>
         </li>
 
       </ul>
     </div>
   </nav>
-
+<!-- 
   <ul id="slide-out" class="sidenav">
 
     <li>
-      <a href="index.php" class="blue">Connexion</a>
+      <a href="index.php" class="blue">GTM-MARATHON</a>
     </li>
     </li>
-  </ul>
+  </ul> -->
 
   <form name="login" action="accueil" method="post" class="form-signin">
     <!-- <input type="hidden" name="_csrf_token" value="Qa9evAsiOEdd0uDl85M49H_OSDYA55nhtsvuYxJAEoI" /> -->
@@ -172,7 +172,7 @@ ob_start();
   </form>
 
   <?php if(!empty($loginError)){?>
-  <div class="text-danger"><?= $loginError;?></div>
+  <div class="text-danger"><?=$loginError;?></div>
   <?php }?>
   
   <main class="container"></main>

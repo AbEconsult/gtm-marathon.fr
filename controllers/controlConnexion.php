@@ -19,8 +19,8 @@ if (isset($_POST['login-btn'])) {
         // echo "<br> 9) je lance connectUser(modele.inc.users) depuis  - controllers/controlConnexion - pour la 1ere fois ";
 
         $tUsers = getConnexion($email);
-        
-        
+
+
         if (count($tUsers[0]) == 4 and password_verify($mdp, $tUsers[0]['pwd'])) {
             echo "<br> 11 aaa) je vérifie user dans - controllers/controlConnexion - pour la 2ème fois ";
             $_SESSION['username'] = $tUsers[0]['username'];
@@ -44,14 +44,15 @@ if (isset($_POST['login-btn'])) {
 ?>
         <script>
             alert(<?php $loginError ?>);
-            </script><?php
-                }
-            } else {
-                $loginError = "Veuillez compléter tous les champs...";
-                ?><script>
-                    alert(<?php $loginError ?>);
-                    </script><?php
-                    require_once("vue/view_connexion.php");                
+        </script>
+    <?php
+    }
+} else {
+    $loginError = "Veuillez compléter tous les champs...";
+    ?><script>
+        alert(<?php echo "champ vide, ".$loginError ?>);
+        </script><?php
+                require_once("vue/view_connexion.php");
             }
             // echo "<br> (5) je vais dans - vue/view_Connexion - pour la 1ere fois, après contolConnexion et test le login-btn";        
-?>
+                ?>
