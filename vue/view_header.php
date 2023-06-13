@@ -1,98 +1,113 @@
-<?php //$titre = "<h1>Gestion des Missions1</h1>";
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-$contenu = '<style type="text/css">
-    .row,
-    .input-field {
-        margin-bottom: 5px;
-    }
+ob_start();
+?>
 
-    .checkbox-horizontal label {
-        margin-right: 20px;
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <img class="logo" src="" alt="">
 
-    }
+        <?php if (!isset($_SESSION['email'])) { ?>
+            <? echo "variable session =" . $_SESSION['email'] ?>
+            <style type="text/css">
+                .row,
+                .input-field {
+                    margin-bottom: 5px;
+                }
 
-    nav {
-        background-color: red !important;
-    }
+                .checkbox-horizontal label {
+                    margin-right: 20px;
+
+                }
+
+                nav {
+                    background-color: red !important;
+                }
 
 
-    @media print and (min-resolution: 50dpi) {
-        body {
+                @media print and (min-resolution: 50dpi) {
+                    body {
 
-            width: 100%
-        }
+                        width: 100%
+                    }
 
-        nav {
-            display: none;
-        }
+                    nav {
+                        display: none;
+                    }
 
-        col s12 {
-            width: 50%
-        }
-    }
+                    col s12 {
+                        width: 50%
+                    }
+                }
 
-    @media only screen and (min-width: 601px) {
-        .container {
-            width: 98%;
-        }
-    }
-</style>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <a href="/" class="brand-logo">GTM-MARATHON</a>
+                @media only screen and (min-width: 601px) {
+                    .container {
+                        width: 98%;
+                    }
+                }
+            </style>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="index.php?action=moderateur">Modérateurs</a></li>
-
-            <li><a href="index.php?action=conducteur">Conducteurs</a></li>
-
-            <li><a href="index.php?action=client">Clients</a></li>
-
-            <li>
-                <a class="dropdown-trigger" href="#!" data-target="dropdown1">Paramètres<i class="material-icons right">arrow_drop_down</i></a>
-                <ul id="dropdown1" class="dropdown-content" tabindex="0">
-                    <li tabindex="0">
-                        <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
-                    </li>
-                    <li tabindex="0">
-                        <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
-                    </li>
-                </ul>
-            </li>
-
-            <span> </span>
-
-            <li><a href="index.php?action=mission">Missions</a></li>
-
-            <li><a href="#">commercial@gtm-marathon.fr</a></li>
-            <li class="orange">
-                <a href="index.php?action=logout">
-                    Déconnexion
-                    <i class="material-icons right"> exit_to_app</i>
-                </a>
-            </li>
-        </ul>
+            <div>
+                <span id="compagny">GTM-MARATHON</span>
+            </div>
     </div>
+
 </nav>
 
-<ul id="slide-out" class="sidenav">
-    <li><a href="index.php?$action=moderateur">Modérateurs</a></li>
+<?php } else { ?>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
 
-    <li><a href="/vue/Drivers/">Conducteur</a></li>
-    <li><a href="/vue/customers/">Clients</a></li>
-    <li><a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a></li>
-    <li><a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a></li>
+    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+    <div class="nav-wrapper">
 
-    <li><a href="/missions">Missions</a></li>
+            <?php if ($_SESSION['roles'] === "admin") { ?>
+                <div class="container">
+                    <div class="navbar-nav m-9">
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('ajouter-client'); ?>" href="newcli">Client</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('ajouter-utilisateur'); ?>" href="newUser">Conducteurs</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a></li>
+                    </div>
+                    <?php if ($_SESSION['roles'] === "moderator") { ?>
+                        <div class="navbar-nav m-9">
+                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                            <a class="right hide-on-med-and-down <?php active('ajouter-client'); ?>" href="newcli">Client</a>
+                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a>
+                        </div>
+                    <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
+                        <div class="navbar-nav m-9">
+                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a>
+                        </div>
+                    <?php } ?>
+                    
+                    <div class="right hide-on-med-and-down">
+                        <!-- <span class="m-2"> -->
+                            <!-- <i class="fa-solid fa-user mt-2"></i> -->
+                            <span class=""></span><?= $_SESSION['email'] ?></span>
+                            <span> </span>
+                            <span class="navbar-nav m-3">
+                                <a class="right hide-on-med-and-down orange" href='modeles/deconnexion.php'>deconnexion</a>
+                            </span>
+                        <!-- </span> -->
+                    </div>
+                </div>
 
-    <li><a href="/profile/edit">commercial@gtm-marathon.fr</a></li>
-    <li class="orange">
-        <a href="/logout">
-            Déconnexion
-            <i class="material-icons right"> exit_to_app</i>
-        </a>
-    </li>
-</ul>';
 
-echo "<br> (3) - Je passe dans view_header";
+    <?php } ?>
+    </div>
+    </nav>
+
+<?php
+            $menu = ob_get_clean();
+
+
+            require_once('vue/modele.php');
+        }
+?>

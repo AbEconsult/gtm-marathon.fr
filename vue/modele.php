@@ -1,4 +1,4 @@
-<? echo "je ne rentre pas ici "?>
+<? echo "je ne rentre pas ici " ?>
 
 <!DOCTYPE html>
 <html>
@@ -45,22 +45,36 @@
     <script type="text/javascript" src="public/js/app.js"></script>
 
 </head>
-<header><?php require_once "vue/view_header.php" ?></header>
+<<header>
+    <? $menu; ?>
+    </header>
 
-<body>
+    <main>
+        <?php //if (!empty($action)) { ?>
+            <h1><? //$titre; ?></h1>
+        <?php //} ?>
+        <?php if (!isset($_SESSION['email'])) { ?>
+            <h1><? $titre; ?></h1>
+        <?php }else{ $titre="Page Introuvable";} ?>
+        
+        <?php if (!isset($_SESSION['email'])) { ?>
+            <h1><? $contenu; ?></h1>
+        <?php }else{ $contenu=" ";} ?>
 
-    <?php
-echo $acces;
+        <?php //if (!empty($action)) {
+        //echo $contenu;
+        //} ?>
 
-   if ($acces === 1 or empty($acces)){ 
-    $contenu="";
-    $contenu = $contenu_log;
-    }
-        echo $contenu;
-    ?>
+    </main>
+    <?
+    // if (isset($_SESSION['email'])) {
+    //     if ($action === 'detailMission' || $action === 'delMission' || $action === 'MAJupdMission') { ?>
+    <!-- //         <br><br> -->
+    <!-- //         <a href="accueil" class="href" id="retour">Retour - liste Missions</a><br> -->
+    <?php //} 
+    // } ?>
+      
+    <footer><?php require_once "Vue/view_footer.php" ?></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-</body>
-
-<footer><?php require_once "Vue/view_footer.php" ?></footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </html>

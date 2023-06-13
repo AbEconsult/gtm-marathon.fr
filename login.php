@@ -1,11 +1,13 @@
 <?php
 if (!isset($_SESSION)) {
-  echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
-  echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
+  // echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
+  // echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
   session_start();
 }
-$acces=1;
-$contenu_log = '
+
+ob_start();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -114,7 +116,7 @@ $contenu_log = '
     // if (!isset($_SESSION)) {
       
     //   session_start();
-  }
+ // }
 
   ?>
     <div class="nav-wrapper">
@@ -191,5 +193,10 @@ $contenu_log = '
   </script>
 </body>
 </html>';
+<?
 
+$contenu = ob_get_clean();
+
+require_once("vue/view_header.php");
+require_once('vue/modele.php');
 

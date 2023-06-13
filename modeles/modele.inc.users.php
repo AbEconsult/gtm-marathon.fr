@@ -1,19 +1,5 @@
-<!-- Procédures de manupuilation des données -->
 <?php
-$email = '';
-require_once "modeles/modele.inc.php";
-echo "<br> 3) je passe dans - modeles/modele.inc.users.php - pour la 1ère fois et lance connexion()";
-// $modele_inc_users =" 5) modele_inc_users - "; echo $modele_inc_users;
-connexion();
-echo "<br> 5) j'ai lancé connexion() qui se trouve dans modele.inc et retourne sur controlConnexion ";
-require_once "vue/view_listUsers.php";
-
-// if ($modele_inc_users === 0){
-//     $modele_inc_users=1;
-// }else {
-//     $modele_inc_users++;
-// }
-// echo "<br> passage dans modele.inc.users = ".$modele_inc_users;
+require_once("modeles/modele.inc.php");
 
 function listUsers ($email)
 {
@@ -58,134 +44,226 @@ function connectUser ($email)
         return $users;
     }
 }
+function getListUsers(){
+    $connexion=connexion();
 
-// /**
-//  * Summary of insUser
-//  * @param mixed $nom
-//  * @param mixed $user_can
-//  * @param mixed $email
-//  * @param mixed $mdp
-//  * @param mixed $id_service
-//  * @return bool
-//  */
-// function insUser(string $nom, string $user_can, string $email, string $mdp, int $id_service)
-// {
-//     echo "<br> je passe dans function insUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+    //prepare la requête SQL
+    $sql = "SELECT u.id_user,u.nom_user,u.prenom_user,u.email,u.roles,p.type_profil
+            FROM user u
+	        JOIN profil p ON u.roles=p.roles
+            ORDER BY id_user";
+    //execute la requete
+    $curseur=$connexion->query($sql);
 
-//     $sql = "INSERT INTO user (username,username_canonical,email,pwd,roles) VALUES (?,?,?,?,?,?)";
+    //recupere
+    $record=$curseur->fetchAll();
 
-//     $reponse = $mysql->prepare($sql);
+    //ferme le curseur
+    $curseur->closeCursor();
 
+    //detruit la connexion
+    $connexion = null;
 
-//     try {
-//         $resultatsI = $reponse->execute([$nom,$user_can,$email,$mdp,$id_service]);
-//     } catch (PDOException $e) {
-//         $resultatsI = false;
-//     }
-
-//     $reponse->closeCursor();
-//     echo "<h1> Le salarié  ".$nom." à bien été crée</h1>";
-//     return $resultatsI;
-// }
-
-/**
- * Summary of searchUser
- * @param mixed $nom
- * @param mixed $email
- * 
- */
-function searchUser(string $nom,string $email)
-{
-    echo "<br> je passe dans function searchUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-
-    $mysql = connexion();
-
-    $sql = "SELECT * FROM user WHERE username LIKE :nom AND  email LIKE :mail ";
-    var_dump($sql);
-
-    $reponse = $mysql->prepare($sql);
-
-    $reponse->execute([":nom" => '%' . $nom . '%', ":mail" => '%' . $email . '%']);
-    $resultatsR = $reponse->fetchAll(PDO::FETCH_ASSOC);
-
-    $reponse->closeCursor();
-    $mysql=null;
-
-    return $resultatsR;
-
+    // retourn le tableau
+    return $record;
 }
 
-// /**
-//  * Summary of searchId
-//  * @param mixed $id
-//  * @return mixed
-//  */
-// function searchId(int $id)
-// {
-//     echo "<br> je passe dans function searchId - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+function addUser(string $nom, string $prenom, int $profil, string $email, string $mdp) {
+    $connexion = connexion();
 
-//     $sql = ("SELECT * FROM user  WHERE id=?");
+    // Préparer la requête SQL
+    $sql1="SELECT email FROM user WHERE email = :email";
+    $sql2 = "INSERT INTO user (nom_user, prenom_user, roles, email, mdp) VALUES (?,?,?,?,?)";
 
-//     $resultatsM = $mysql->prepare($sql);
+    //Enregistre la requête 1
+    $request = $connexion->prepare($sql1);
 
-//     $resultatsM->execute([$id]);
+    //Exécute la requête 1
+    $request->execute(array('email'=>$email));
+    $count = $request->rowCount();
 
-//     $users = $resultatsM->fetch(PDO::FETCH_ASSOC);
+    if($count){
+        echo'<script>','alert("Cet user existe déjà !")','</script>';
+    } else {
+        //Enregistre la requête 2
+        $curseur = $connexion->prepare($sql2);
 
-//     return $users;
-// }
+        //Exécute la requête 2
+        try {
+            $res = $curseur->execute([$nom,$prenom,$profil,$email,$mdp]);
 
-// /**
-//  * Summary of updUsers
-//  * @param mixed $users
-//  * @return PDOStatement|bool
-//  */
-// function updUsers(string $users)
-// {
-//     echo "<br> je passe dans function updUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
-
-//     // $id=$_GET['id'];
-
-//     $sql = "UPDATE user SET username = :nom,user_can=:user_canonical,email=:email WHERE id=:id";
-//     // $sql = "UPDATE users SET nom=:nom,user_can=:user_can,phone=:phone WHERE id=:id";
-
-
-//     $resultatsM = $mysql->prepare($sql);
-
-
-//     $resultatsM->execute([":id" => $users['id'], ":nom" => $users['username'], ":user_can" => $users['username_canonical'], ":email" => $users['email']]);
-
-
-//     $resultatsM->closeCursor();
-//     echo "<h1> L'intervenant ".$users['username']." à bien été modifié</h1>";
-
-//     return $resultatsM;
-// }
-
-// /**
-//  * Summary of delUser
-//  * @param mixed $id
-//  * @return PDOStatement|bool
-//  */
-// function delUser(int $id)
-// {
-//     echo "<br> je passe dans function delUser - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
-
-//     $sql = "DELETE FROM user  WHERE id=?";
+        }catch(PDOException $e){
+            $res = false;
+        }
     
-//     $resultatsD = $mysql->prepare($sql);
-    
-//     $resultatsD->execute([$id]);
-    
-//     // echo "le nombre d'enregistrement touché est de : ".$resultatsD->rowCount();
-//     echo "<br><h1>L'indentifiant N° : $id vient d'être supprimé</h1>";
+    // Fermer le curseur / resultset
+    $curseur->closeCursor();
 
+    // Détruit la connexion
+    $connexion = null;
 
-//     $resultatsD->closeCursor();
+    // Retourner un booléen (VRAI si insertion réussie)
+    return $res;
+    }
+}
+
+function list_User(string $nom,string $email,int $profil) {
+    $mysql = connexion();
+
+    // Préparer la requête SQL
+    if ($profil!=""){
+        $sql = "SELECT u.id,u.username,u.email,u.roles,p.discr
+                FROM user u
+                JOIN profil p ON u.roles=p.discr
+                WHERE username LIKE :nom AND email LIKE :email AND u.roles = :roles;";}
+    else {
+        $sql = "SELECT u.id,u.username,u.email,u.roles,p.discr
+                FROM user u
+                JOIN profil p ON u.roles=p.discr
+                WHERE username LIKE :nom AND email LIKE :email";}
+        
+
+    // Enregistre la requête préparée
+    $curseur = $mysql->prepare($sql);
+
+    //Exécute la requête
+    if ($profil!=0){
+        $curseur->execute([":nom"=>"%$nom%",":email"=>"%$email%",":profil"=>$profil]);}
+    else {
+        $curseur->execute([":nom"=>"%$nom%",":email"=>"%$email%"]);}
     
-//     return $resultatsD;
-// }
+
+    // Récupérer les enregistrements
+    $tUsers = $curseur->fetchAll(PDO::FETCH_ASSOC);
+
+    return $tUsers;
+}
+
+/**
+ * Renvoi le nombre d'administrateur dans la bdd
+ * @return int
+ */
+function countAdmin() {
+    $connexion = connexion();
+
+    $sql = "SELECT * FROM user WHERE roles = 'admin'";
+    $curseur = $connexion->query($sql);
+    $nbAdmin = $curseur->rowCount();
+
+    $curseur->closeCursor();
+    $connexion = null;
+
+    return $nbAdmin;
+}
+
+function delUser(int $idUser, int $idProfil) {
+    $connexion = connexion();
+
+    $nbAdmin = countAdmin();
+
+    try{
+        // Préparer la requête SQL pour vérifier que l'user ne travaille pas déjà sur un ticket
+        $sql="SELECT u.id FROM user u JOIN mission m ON m.id=u.id WHERE u.id = ?";
+
+        // Enregistrer la requête préparée
+        $curseur = $connexion->prepare($sql);
+
+        // Récupérer le nombre d enregistrements
+        $nbUsers = $curseur->rowCount();
+
+            if ($nbUsers>=1){
+
+                // Fermer le curseur / resultset
+                $curseur->closeCursor();
+
+                // Détruit la connexion
+                $connexion = null;
+
+                $res = false;
+
+                // Retourner un booléen (VRAI si 1 seul contact supprimé)
+                return $res;
+
+            }else {
+                // Préparer la requête SQL
+                $sql = "DELETE FROM user WHERE id = ?";
+
+                // Enregistrer la requête préparée
+                $curseur = $connexion->prepare($sql);
+
+                if ($idProfil === 'admin' AND $nbAdmin < 2) {
+                    // Fermer le curseur / resultset
+                    $curseur->closeCursor();
+    
+                    // Détruit la connexion
+                    $connexion = null;
+    
+                    $res = false;
+    
+                    // Retourner un booléen (VRAI si 1 seul contact supprimé)
+                    return $res;
+                }
+                // Exécuter la requête
+                $curseur->execute([$idUser]);
+
+                // Récupérer le nombre d enregistrements supprimés
+                $nbUsers = $curseur->rowCount();
+
+                // Fermer le curseur / resultset
+                $curseur->closeCursor();
+
+                // Détruit la connexion
+                $connexion = null;
+
+                // Retourner un booléen (VRAI si 1 seul contact supprimé)
+                return ($nbUsers === 1);
+            }
+        }catch(PDOException $e){
+        return $res=false;
+    }
+}
+
+function getUserById(int $idUser) {
+    $connexion = connexion();
+
+    // Préparer la requête SQL
+    $sql = "SELECT * FROM user WHERE id_user = ?";
+
+    // Enregistrer la requête préparée
+    $curseur = $connexion->prepare($sql);
+
+    // Exécuter la requête
+    $curseur->execute([$idUser]);
+
+    // Récupérer les enregistrements
+    $user = $curseur->fetch(PDO::FETCH_ASSOC);
+
+    return $user;
+}
+
+function updUser(array $user) {
+    $connexion = connexion();
+    
+    // Préparer la requête SQL
+    $sql = "UPDATE user SET nom_user = :nom, prenom_user = :prenom, mdp = :mdp, roles = :profil WHERE id_user = :idUser";
+    
+    // Enregistrer la requête préparée
+    $curseur = $connexion->prepare($sql);
+    
+    // Exécuter la requête
+    $curseur->execute(["idUser" => $user['idUser'], ":nom"=> $user['nom'], 
+    ":prenom"=> $user['prenom'], ":mdp"=> $user['mdp'], ":profil"=> $user['profil']]);
+    
+    // Récupérer le nombre d'enregistrements supprimés
+    $nbUsers = $curseur->rowCount();
+    
+    // Fermer le curseur / resultset
+    $curseur->closeCursor();
+    
+    // Détruit la connexion
+    $connexion = null;
+    
+    // Retourner un booléen (VRAI si 1 seul contact modifié)
+    return ($nbUsers === 1);
+}
+?>

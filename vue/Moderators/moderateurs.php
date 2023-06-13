@@ -1,6 +1,14 @@
 <?php
 echo "<br> (2) - Je passe dans 'moderateurs'";
-$contenu = '
+if (!isset($_SESSION)) {
+  echo "<br> (2a) je test si la session est toujours active dans - moderateurs - et passe pour la 1ère fois ";
+  echo "<br> (2b) je passe dans moderateurs - pour la 1ère fois ";
+  session_start();
+}
+
+ob_start();
+?>
+
 <main class="container">
       <h3>Les moderateurs</h3>
       <a
@@ -97,5 +105,10 @@ $contenu = '
     ></div>
   </body>
 </html>';
+<?
 
-require "vue/modele.php";
+$contenu = ob_get_clean();
+
+require_once("vue/view_header.php");
+require_once('vue/modele.php');
+

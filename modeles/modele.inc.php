@@ -1,6 +1,6 @@
 <?php
 
-echo "<br> (4) je suis dans modele.inc après controlConnexion";
+// echo "<br> (2) je suis dans modele.inc après controlConnexion";
 /**
  * Summary of connexion
  * @return mixed
@@ -10,7 +10,7 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    echo "<br> (*) je suis connecté à la base marathon";
+    echo "<br> (***********) je suis connecté à la base marathon";
     try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -49,4 +49,19 @@ function getConnexion(string $mail) {
     return $tUsers;
 }
 
+/**
+ * Obtient la page actuelleactuelle passée en paramètre qui passera le mot active 
+ * et le placera dans le paramètre de classe pour définir la page active.
+ * @param [type] $currect_page
+ * @return void
+ */
+function active($currect_page){
+    $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+    $url = end($url_array);  
+    if($currect_page == $url){
+        echo 'active';
+    } 
+}
+
+// echo "<br> (3) je retourne  dans  controlConnexion après modele.inc ";
 ?>
