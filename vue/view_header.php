@@ -71,14 +71,14 @@ ob_start();
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
                         <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="drivers">Conducteurs</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a></li>
                     </ul>
                     <ul class="sidenav" id="mobile-demo">
                         <li><a href="accueil">Accueil</a></li>
-                        <li><a href="customers">Client</a></li>
-                        <li><a href="drivers">Conducteurs</a></li>
-                        <li><a href="missions">Missions</a></li>
+                        <li><a href="vue/Customers/clients.php">Client</a></li>
+                        <li><a href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
+                        <li><a href="vue/Missions/missions">Missions</a></li>
                     </ul>
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
@@ -96,13 +96,13 @@ ob_start();
                 <?php if ($_SESSION['roles'] === "moderator") { ?>
                     <div class="navbar-nav m-8">
                         <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                        <a class="right hide-on-med-and-down <?php active('ajouter-client'); ?>" href="newcli">Client</a>
-                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a>
+                        <a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a>
+                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
                     </div>
                 <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
                     <div class="navbar-nav m-8">
                         <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="missions">Missions</a>
+                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
                     </div>
                 <?php } ?>
 

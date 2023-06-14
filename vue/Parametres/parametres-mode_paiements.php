@@ -1,3 +1,15 @@
+<?php
+echo "<br> (2) - Je passe dans Clients";
+if (!isset($_SESSION)) {
+  echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
+  echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
+  session_start();
+}
+
+ob_start();
+
+?>
+
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -16,10 +28,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="/public/css/materialize.min.css" />
   <link rel="stylesheet" type="text/css" href="/public/css/app.css" />
   <link rel="stylesheet" type="text/css" href="/public/css/style.css" />
+
     <!--Import JQuery -->
     <script src="/public/js/jquery.js"></script>
 
@@ -80,11 +93,11 @@
         <a href="/" class="brand-logo">MARATHON</a>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/vue/Moderators/moderateurs.php">Modérateurs</a></li>
+          <li><a href="/vue/moderators/">Modérateurs</a></li>
 
-          <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li>
+          <li><a href="/vue/drivers/">Conducteurs</a></li>
 
-          <li><a href="/vue/Customers/clients.php">Clients</a></li>
+          <li><a href="/vue/customer/">Clients</a></li>
 
           <li>
             <a class="dropdown-trigger" href="#!" data-target="dropdown1"
@@ -92,10 +105,10 @@
             >
             <ul id="dropdown1" class="dropdown-content" tabindex="0">
               <li tabindex="0">
-                <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
+                <a href="/vue/paymentmethod">Mode de paiment</a>
               </li>
               <li tabindex="0">
-                <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
+                <a href="/vue/itemdelivery">Types de livraison</a>
               </li>
             </ul>
           </li>
@@ -135,15 +148,14 @@
     </ul>
 
     <main class="container">
-      <h3>Types de livraison</h3>
-
+      <h3>Méthode de paiment</h3>
       <a
         class="btn-floating btn-large waves-effect waves-light red right"
-        href="/vue/itemdelivery/new"
+        href="/vue/paymentmethod/new"
       >
         <i class="material-icons">add</i></a
       >
-      <table class="table">
+      <table>
         <thead>
           <tr>
             <th>Id</th>
@@ -153,13 +165,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="/vue/itemdelivery/1">1</a></td>
-            <td>Moto</td>
-
+            <td><a href="/vue/paymentmethod/1">1</a></td>
+            <td>CB</td>
             <td>
               <ul>
                 <li>
-                  <a class="btn orange" href="/vue/itemdelivery/1/edit"
+                  <a class="btn orange" href="/vue/paymentmethod/1/edit"
                     >edit</a
                   >
                 </li>
@@ -167,13 +178,12 @@
             </td>
           </tr>
           <tr>
-            <td><a href="/vue/itemdelivery/2">2</a></td>
-            <td>VL</td>
-
+            <td><a href="/vue/paymentmethod/2">2</a></td>
+            <td>Chèque</td>
             <td>
               <ul>
                 <li>
-                  <a class="btn orange" href="/vue/itemdelivery/2/edit"
+                  <a class="btn orange" href="/vue/paymentmethod/2/edit"
                     >edit</a
                   >
                 </li>
@@ -182,6 +192,10 @@
           </tr>
         </tbody>
       </table>
+
+      <ul>
+        <li></li>
+      </ul>
     </main>
 
     <script type="text/javascript">
@@ -217,3 +231,8 @@
     ></div>
   </body>
 </html>
+<?
+$menu = ob_get_clean();
+
+require_once('vue/view_header.php');
+require_once('vue/modele.php');

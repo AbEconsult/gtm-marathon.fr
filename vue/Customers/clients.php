@@ -9,6 +9,84 @@ if (!isset($_SESSION)) {
 ob_start();
 
 ?>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+  <title>Marathon - Welcome!</title>
+
+  <!--Import Google Icon Font-->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link rel="stylesheet" href="/public/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/app.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+
+  <!--Import JQuery -->
+  <script src="/public/js/jquery.js"></script>
+
+  <!-- Materialize -->
+  <script src="/public/js/materialize.min.js"></script>
+
+  <!-- Select2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Signature Pad -->
+  <script src="/public/js/signature-pad.js"></script>
+  <!-- Jquery Mask -->
+  <script src="/public/js/jquery.mask.min.js"></script>
+  <!-- App -->
+  <script type="text/javascript" src="/public/js/app.js"></script>
+
+
+</head>
+
+<body>
+  <!-- <style type="text/css">
+    .row,
+    .input-field {
+      margin-bottom: 5px;
+    }
+
+    .checkbox-horizontal label {
+      margin-right: 20px;
+
+    }
+
+    nav {
+      background-color: red !important;
+    }
+
+
+    @media print and (min-resolution: 50dpi) {
+      body {
+
+        width: 100%
+      }
+
+      nav {
+        display: none;
+      }
+
+      col s12 {
+        width: 50%
+      }
+    }
+
+    @media only screen and (min-width: 601px) {
+      .container {
+        width: 98%;
+      }
+    }
+  </style> -->
   <body>
     <main class="container">
       <h3>Listes des clients</h3>

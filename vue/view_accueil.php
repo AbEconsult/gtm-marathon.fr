@@ -4,7 +4,7 @@ if(!isset($_SESSION)){
 }
 ob_start();
 ?>
-<h1>Accueil - Gestion des Missions1</h1>';
+<h1>Accueil - Gestion des Missions</h1>';
 <?
 $contenu = ob_get_clean();
 
