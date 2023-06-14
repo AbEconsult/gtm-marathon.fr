@@ -119,7 +119,7 @@ ob_start();
 
         <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
         <li class="orange">
-          <a href="/logout">
+          <a href="modeles/deconnexion.php">
             Déconnexion
             <i class="material-icons right"> exit_to_app</i>
           </a>
@@ -141,7 +141,7 @@ ob_start();
 
     <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
     <li class="orange">
-      <a href="/logout">
+      <a href="modeles/deconnexion.php">
         Déconnexion
         <i class="material-icons right"> exit_to_app</i>
       </a>

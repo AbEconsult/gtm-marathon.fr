@@ -1,8 +1,7 @@
 <?php
-echo "<br> (2) - Je passe dans Clients";
+
 if (!isset($_SESSION)) {
-  echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
-  echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
+
   session_start();
 }
 
@@ -116,7 +115,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="/logout">
+        <a href="modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -138,7 +137,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="/logout">
+    <a href="modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>

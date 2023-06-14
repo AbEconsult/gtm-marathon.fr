@@ -1,3 +1,15 @@
+<?php
+
+
+if (!isset($_SESSION)) {
+
+  session_start();
+}
+
+ob_start();
+
+?>
+
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -40,132 +52,113 @@
     
   </head>
   <body>
-    <style type="text/css">
+  <style type="text/css">
+  .row,
+  .input-field {
+    margin-bottom: 5px;
+  }
+
+  .checkbox-horizontal label {
+    margin-right: 20px;
+
+  }
+
+  nav {
+    background-color: red !important;
+  }
 
 
-      .row, .input-field{
-          margin-bottom: 5px;
-      }
-      .checkbox-horizontal label{
-          margin-right: 20px;
+  @media print and (min-resolution: 50dpi) {
+    body {
 
-      }
-
-                   nav { background-color: red !important; }
-
-
-      @media print and (min-resolution: 50dpi){
-              body{
-
-                  width: 100%
-              }
-              nav{
-                  display: none;
-              }
-          col s12 {
-              width: 50%
-          }
-      }
-
-      @media only screen and (min-width: 601px){
-      .container {
-          width: 98%;
-      }
+      width: 100%
     }
-    </style>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" data-target="slide-out" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-        <a href="/" class="brand-logo">MARATHON</a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/vue/moderators/moderateurs.html">Modérateurs</a></li>
+    nav {
+      display: none;
+    }
 
-          <li><a href="/vue/Drivers/conducteurs.html">Conducteurs</a></li>
+    col s12 {
+      width: 50%
+    }
+  }
 
-          <li><a href="/vue/Customers/clients.html">Clients</a></li>
+  @media only screen and (min-width: 601px) {
+    .container {
+      width: 98%;
+    }
+  }
+</style>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="/" class="brand-logo">GTM MARATHON</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/">Accueil</a></li>
+      
+      <!-- <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li> -->
 
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1"
-              >Paramètres<i class="material-icons right">arrow_drop_down</i></a
-            >
-            <ul id="dropdown1" class="dropdown-content" tabindex="0">
-              <li tabindex="0">
-                <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
-              </li>
-              <li tabindex="0">
-                <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
-              </li>
-            </ul>
+      <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li>
+
+      <li><a href="/vue/Customers/clients.php">Clients</a></li>
+
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown1">Paramètres<i class="material-icons right">arrow_drop_down</i></a>
+        <ul id="dropdown1" class="dropdown-content" tabindex="0">
+          <li tabindex="0">
+            <a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a>
           </li>
-
-          <span> </span>
-
-          <li><a href="/vue/Missions/missions.html">Missions</a></li>
-
-          <li><a href="#">commercial@gtm-marathon.fr</a></li>
-          <li class="orange">
-            <a href="/logout">
-              Déconnexion
-              <i class="material-icons right"> exit_to_app</i>
-            </a>
+          <li tabindex="0">
+            <a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a>
           </li>
         </ul>
-      </div>
-    </nav>
+      </li>
 
-    <ul id="slide-out" class="sidenav">
-      <li><a href="/vue/moderators/moderateurs.html">Modérateurs</a></li>
+      <span> </span>
 
-      <li><a href="/vue/Drivers/conducteurs.html">Conducteur</a></li>
-      <li><a href="/vue/Customers/clients.html">Clients</a></li>
-      <li><a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a></li>
-      <li><a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a></li>
+      <li><a href="/vue/Missions/missions.php">Missions</a></li>
 
-      <li><a href="/vue/Missions/missions.html">Missions</a></li>
-
-      <li><a href="/profile/edit">commercial@gtm-marathon.fr</a></li>
+      <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="/logout">
+        <a href="modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
       </li>
     </ul>
+  </div>
+</nav>
+<!-- Accès Mobile -->
+<ul id="slide-out" class="sidenav">
+  <li><a href="accueil">Accueil</a></li>
+  <!-- <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li> -->
+  <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
+  <li><a href="/vue/Customers/clients.php">Clients</a></li>
+  <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
+  <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
+
+  <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+  <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+  <li class="orange">
+    <a href="modeles/deconnexion.php">
+      Déconnexion
+      <i class="material-icons right"> exit_to_app</i>
+    </a>
+  </li>
+</ul>
 
     <main class="container">
       <form name="appbundle_profile" method="post" autocomplete="off">
         <div id="appbundle_profile">
-          <div>
-            <label for="appbundle_profile_firstName" class="active">
-              Prénom </label
-            ><input
-              type="text"
-              id="appbundle_profile_firstName"
-              name="appbundle_profile[firstName]"
-              maxlength="64"
-              value="ElAbjani"
-              style="
-                background-image: url('moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png') !important;
-                background-position: 98% 50% !important;
-                background-size: 16px 16px !important;
-                background-repeat: no-repeat !important;
-                transition: background-position 0s ease 0s,
-                  background-size 0s ease 0s !important;
-                cursor: pointer;
-              "
-            />
-          </div>
-          <div>
+        <div>
             <label for="appbundle_profile_lastName" class="active"> Nom </label
             ><input
               type="text"
               id="appbundle_profile_lastName"
               name="appbundle_profile[lastName]"
               maxlength="64"
-              value="Abel"
+              value="ELABJANI"
               style="
                 background-image: url('moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png') !important;
                 background-position: 98% 50% !important;
@@ -177,6 +170,27 @@
               "
             />
           </div>
+          <div>
+            <label for="appbundle_profile_firstName" class="active">
+              Prénom </label
+            ><input
+              type="text"
+              id="appbundle_profile_firstName"
+              name="appbundle_profile[firstName]"
+              maxlength="64"
+              value="Abel"
+              style="
+                background-image: url('moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png') !important;
+                background-position: 98% 50% !important;
+                background-size: 16px 16px !important;
+                background-repeat: no-repeat !important;
+                transition: background-position 0s ease 0s,
+                  background-size 0s ease 0s !important;
+                cursor: pointer;
+              "
+            />
+          </div>
+          
           <div>
             <label for="appbundle_profile_email" class="required active">
               Émail </label
@@ -389,7 +403,7 @@
           />
         </div>
         <input class="btn orange" type="submit" value="Enregister" />
-        <a class="btn" href="/admin/moderators/">Retour vers la liste</a>
+        <a class="btn" href="/vue/Moderators/moderateurs.php">Retour vers la liste</a>
       </form>
     </main>
 
@@ -426,3 +440,8 @@
     ></div>
   </body>
 </html>
+<?
+$contenu = ob_get_clean();
+
+require_once("vue/view_header.php");
+require_once('vue/modele.php');

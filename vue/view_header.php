@@ -83,7 +83,8 @@ ob_start();
                     <div class="navbar-nav s6-push-s8">
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                        <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('listModerators'); ?>" aria-current="page" href="vue/Moderators/moderateurs.php">Moderateurs</a></li>
                             <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
                             <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
                             <li>
@@ -101,6 +102,7 @@ ob_start();
                         </ul>
                         <ul class="sidenav" id="mobile-demo">
                             <li><a href="accueil">Accueil</a></li>
+                            <li><a href="vue/Moderators/moderateurs.php">Moderateurs</a></li>
                             <li><a href="vue/Customers/clients.php">Client</a></li>
                             <li><a href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
                             <li><a href="vue/Missions/missions">Missions</a></li>

@@ -119,7 +119,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="/logout">
+        <a href="modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -140,7 +140,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="/logout">
+    <a href="modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>
@@ -165,10 +165,10 @@ ob_start();
     <tbody>
       <tr>
         <td>2</td>
+        <td>ABJANI</td>
         <td>Abel</td>
-        <td>GTM-MARATHON</td>
         <td>
-          <a class="btn orange" href="/vue/drivers/2/edit">Modifier</a>
+          <a class="btn orange" href="/vue/Drivers/conducteurs-detail.php">Modifier</a>
 
           <button class="btn red disableProfile" profileid="2">
             Désactiver
@@ -183,7 +183,7 @@ ob_start();
         <td>DEVARENNE</td>
         <td>Yves</td>
         <td>
-          <a class="btn orange" href="/vue/drivers/4/edit">Modifier</a>
+          <a class="btn orange" href="/vue/Drivers/conducteurs-detail.php">Modifier</a>
 
           <button class="btn red disableProfile" profileid="4">
             Désactiver
@@ -198,7 +198,7 @@ ob_start();
         <td>Jean</td>
         <td>Jean</td>
         <td>
-          <a class="btn orange" href="/vue/drivers/5/edit">Modifier</a>
+          <a class="btn orange" href="/vue/Drivers/conducteurs-detail.php">Modifier</a>
 
           <button class="btn red disableProfile" profileid="5">
             Désactiver
