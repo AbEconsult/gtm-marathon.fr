@@ -1,12 +1,12 @@
 <?php
 if (!isset($_SESSION)) {
-    // echo "<br> (1) je test si la session est toujours active dans - controllers/controlConnexion - pour la 1ère fois ";
+    echo "<br> (1) je test si la session est toujours active dans - controllers/controlConnexion - pour la 1ère fois ";
     session_start();
 }
-// echo "<br> (1a) la session est toujours active dans - controllers/controlConnexion";
+echo "<br> (1a) la session est toujours active dans - controllers/controlConnexion";
 
 require_once("modeles/modele.inc.php");
-// echo "<br> (4) je repasse dans - controllers/controlConnexion - pour la 2eme fois, après modele.inc et test le login-btn";
+echo "<br> (4) je repasse dans - controllers/controlConnexion - pour la 2eme fois, après modele.inc et test le login-btn";
 
 
 

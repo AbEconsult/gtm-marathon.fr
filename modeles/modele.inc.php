@@ -1,6 +1,5 @@
 <?php
-
-echo "<br> (2) je suis dans modele.inc après controlConnexion";
+//   echo "<br> (1) je suis dans - modele.inc - et passe pour la 1ère fois";
 /**
  * Summary of connexion
  * @return mixed
@@ -10,7 +9,7 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    // echo "<br> (***********) je suis connecté à la base marathon";
+    echo "<br> (***********) je suis connecté à la base marathon";
     try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -62,6 +61,3 @@ function active($currect_page){
         echo 'active';
     } 
 }
-
-
-?>

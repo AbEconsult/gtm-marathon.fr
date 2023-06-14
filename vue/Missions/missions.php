@@ -111,7 +111,7 @@ ob_start();
 
       <span> </span>
 
-      <!-- <li><a href="/vue/Missions/missions.html">Missions</a></li> -->
+      <!-- <li><a href="/vue/vue/Missions/missions.phpmissions.html">Missions</a></li> -->
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
@@ -133,7 +133,7 @@ ob_start();
   <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
   <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
 
-  <!-- <li><a href="/vue/Missions/missions.html">Missions</a></li> -->
+  <!-- <li><a href="/vue/vue/Missions/missions.phpmissions.html">Missions</a></li> -->
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
@@ -148,7 +148,7 @@ ob_start();
 <main class="container">
   <h3>Missions</h3>
   <div class="row">
-    <a class="btn-floating btn-large waves-effect waves-light red right" href="vue/Missions/missions_new">
+    <a class="btn-floating btn-large waves-effect waves-light red right" href="vue/vue/Missions/missions-detail.php/missions_new">
       <i class="material-icons">add</i>
     </a>
   </div>
@@ -173,10 +173,12 @@ ob_start();
               </div>
             </div>
           </div>
-          <div hidden="true">
+          <!-- <div hidden="true"> -->
+          <div>
             <select class="browser-default" id="mission_filter_assignedBy" name="mission_filter[assignedBy]">
               <option value=""></option>
-              <option value="1">ElAbjani</option>
+              <option value="1">Alexis</option>
+              <option value="2">Abel</option>
               <option value="7">Eric</option>
             </select>
           </div>
@@ -201,7 +203,8 @@ ob_start();
               </div>
             </div>
           </div>
-          <div hidden="true">
+          <!-- <div hidden="true"> -->
+          <div>
             <select class="browser-default" id="mission_filter_customer" name="mission_filter[customer]">
               <option value=""></option>
               <option value="3">MARATHON</option>
@@ -221,17 +224,17 @@ ob_start();
 
   <div class="row">
     <div class="col s12 m3">
-      <a class="btn" href="/missions/?sort=m.reference&amp;direction=asc&amp;page=1" title="Reference">Reference
+      <a class="btn" href="/vue/Missions/missions.php?sort=m.reference&amp;direction=asc&amp;page=1" title="Reference">Reference
         <i class="material-icons"> arrow_drop_up </i>
       </a>
     </div>
     <div class="col s12 m3">
-      <a class="btn" href="/missions/?sort=c.id&amp;direction=asc&amp;page=1" title="Client">Client
+      <a class="btn" href="/vue/Missions/missions.php?sort=c.id&amp;direction=asc&amp;page=1" title="Client">Client
         <i class="material-icons"> arrow_drop_up </i>
       </a>
     </div>
     <div class="col s12 m3">
-      <a class="btn" href="/missions/?sort=m.requestedAt&amp;direction=asc&amp;page=1" title="Demander le">Demander le
+      <a class="btn" href="/vue/Missions/missions.php?sort=m.requestedAt&amp;direction=asc&amp;page=1" title="Demander le">Demander le
         <i class="material-icons"> arrow_drop_up </i>
       </a>
     </div>
@@ -252,7 +255,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -286,11 +289,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/9">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/9">Afficher</a>
 
-          <a class="btn orange" href="/missions/9/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/9/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/9/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/9/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -308,7 +311,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -342,11 +345,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/8">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/8">Afficher</a>
 
-          <a class="btn orange" href="/missions/8/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/8/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/8/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/8/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -364,7 +367,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -398,11 +401,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/7">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/7">Afficher</a>
 
-          <a class="btn orange" href="/missions/7/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/7/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/7/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/7/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -420,7 +423,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -454,11 +457,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/6">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/6">Afficher</a>
 
-          <a class="btn orange" href="/missions/6/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/6/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/6/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/6/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -476,7 +479,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -510,11 +513,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/5">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/5">Afficher</a>
 
-          <a class="btn orange" href="/missions/5/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/5/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/5/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/5/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -532,7 +535,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -566,11 +569,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/4">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/4">Afficher</a>
 
-          <a class="btn orange" href="/missions/4/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/4/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/4/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/4/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -588,7 +591,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -622,11 +625,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/3">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/3">Afficher</a>
 
-          <a class="btn orange" href="/missions/3/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/3/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/3/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/3/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -644,7 +647,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -678,11 +681,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/2">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/2">Afficher</a>
 
-          <a class="btn orange" href="/missions/2/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/2/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/2/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/2/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>
@@ -700,7 +703,7 @@ ob_start();
             </div>
             <div class="row">
               <label class="col s4 m3">Affecté par: </label>
-              <span>ElAbjani Abel</span>
+              <span>Abel</span>
             </div>
             <div class="row">
               <label class="col s4 m3">Client: </label>
@@ -734,11 +737,11 @@ ob_start();
         </div>
 
         <div class="card-action">
-          <a class="btn" href="/missions/1">Afficher</a>
+          <a class="btn" href="/vue/Missions/missions-detail.php/1">Afficher</a>
 
-          <a class="btn orange" href="/missions/1/edit">Editer</a>
+          <a class="btn orange" href="/vue/Missions/missions-detail.php/1/edit">Editer</a>
 
-          <a class="btn purple darken-2" href="/missions/1/duplicate">Dupliquer</a>
+          <a class="btn purple darken-2" href="/vue/Missions/missions-detail.php/1/duplicate">Dupliquer</a>
         </div>
       </div>
     </div>

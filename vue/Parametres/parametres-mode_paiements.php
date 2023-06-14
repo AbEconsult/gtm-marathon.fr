@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 
   session_start();
 }
-
+// var_dump($_SESSION);
 ob_start();
 
 ?>
@@ -96,11 +96,12 @@ ob_start();
     <a href="/" class="brand-logo">GTM MARATHON</a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a href="/">Accueil</a></li>
       <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
 
       <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li>
 
-      <li><a href="/vue/Customers/clients.html">Clients</a></li>
+      <li><a href="/vue/Customers/clients.php">Clients</a></li>
 
       <li>
         <a class="dropdown-trigger" href="#!" data-target="dropdown1"
@@ -118,11 +119,11 @@ ob_start();
 
       <span> </span>
 
-      <li><a href="/vue/Missions/missions.html">Missions</a></li>
+      <li><a href="/vue/Missions/missions.php">Missions</a></li>
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="/logout">
+      <a href="modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -132,6 +133,7 @@ ob_start();
 </nav>
 <!-- Accès Mobile -->
 <ul id="slide-out" class="sidenav">
+<li><a href="/">Accueil</a></li>
   <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
 
   <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
@@ -141,9 +143,9 @@ ob_start();
 
   <li><a href="/vue/Missions/missions.php">Missions</a></li>
 
-  <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+  <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="/logout">
+  <a href="modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>
@@ -168,12 +170,12 @@ ob_start();
         </thead>
         <tbody>
           <tr>
-            <td><a href="/vue/paymentmethod/1">1</a></td>
+            <td><a href="/vue/Parametres/parametres-mode_paiements.php">1</a></td>
             <td>CB</td>
             <td>
               <ul>
                 <li>
-                  <a class="btn orange" href="/vue/paymentmethod/1/edit"
+                  <a class="btn orange" href="/vue/Parametres/parametres-mode_paiements.php/1/edit"
                     >edit</a
                   >
                 </li>

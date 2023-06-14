@@ -120,6 +120,7 @@ ob_start();
                         });
                     </script> -->
                     </div>
+                    <?php } ?>
                     <?php if ($_SESSION['roles'] === "moderator") { ?>
                         <div class="navbar-nav s6-pull-s8">
                             <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
@@ -147,5 +148,5 @@ ob_start();
 
 
             require_once('vue/modele.php');
-        }
+        // }
 ?>

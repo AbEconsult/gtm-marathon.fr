@@ -12,17 +12,19 @@ if (isset($_POST['action'])) {
 
 
     switch ($action) {
+
         case 'list_Users':
-    echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
+    // echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
             // 1 - récupérer la liste des utilisateurs
-    echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
-            $tUsers = listUsers($email);
+    // echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
+            // $tUsers = listUsers($email);
             // 2 - afficher la liste des utilisateurs
             $titre = "Utilisateurs";
-    echo "<br> 4ème passage";
-    echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après avoir lancé la fonction list_Users et part dans la view_listUsers";
+    // echo "<br> 4ème passage";
+    // echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après avoir lancé la fonction list_Users et part dans la view_listUsers";
     
-            require_once("Vue/view_listUsers.php");
+            // require_once("Vue/view_listUsers.php");
+            require_once("vue/view_accueil.php");
             break;
     
         case 'ajoutUser':

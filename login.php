@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION)) {
-  // echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
+  echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
   // echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
   session_start();
 }

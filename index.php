@@ -3,10 +3,9 @@ session_start();
 
 if (!isset($_SESSION['email'])) {
     require_once("controllers/controlConnexion.php");
-
 } else {
-
     if ($_SESSION['roles'] === "admin") {
+        // echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
         require_once("controllers/controlUsers.php");
         require_once("vue/view_header.php");
     } elseif ($_SESSION['roles'] === "moderator" ) {

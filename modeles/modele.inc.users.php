@@ -1,6 +1,6 @@
 <?php
 require_once("modeles/modele.inc.php");
-
+echo "<br> (1) je suis dans - modele.inc.users - et passe pour la 1ère fois ";
 function listUsers ($email)
 {
     echo "<br> je passe dans function listUsers - modeles/modele.inc.users.php - pour la 1ère fois ";

@@ -139,7 +139,7 @@ ob_start();
 
     <li><a href="/vue/Missions/missions.php">Missions</a></li>
 
-    <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+    <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
     <li class="orange">
       <a href="modeles/deconnexion.php">
         Déconnexion
