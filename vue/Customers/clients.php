@@ -1,12 +1,13 @@
 <?php
-echo "<br> (2) - Je passe dans Clients";
+// echo "<br> (2) - Je passe dans Clients";
 if (!isset($_SESSION)) {
-  echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
-  echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
+  // echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
+  // echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
   session_start();
 }
 
 ob_start();
+
 
 ?>
 <html>
@@ -50,7 +51,7 @@ ob_start();
 </head>
 
 <body>
-  <!-- <style type="text/css">
+  <style type="text/css">
     .row,
     .input-field {
       margin-bottom: 5px;
@@ -86,79 +87,106 @@ ob_start();
         width: 98%;
       }
     }
-  </style> -->
+  </style>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo">GTM MARATHON</a>
+
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+
+        <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li>
+
+        <!-- <li><a href="/vue/Customers/clients.html">Clients</a></li> -->
+
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown1">Paramètres<i class="material-icons right">arrow_drop_down</i></a>
+          <ul id="dropdown1" class="dropdown-content" tabindex="0">
+            <li tabindex="0">
+              <a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a>
+            </li>
+            <li tabindex="0">
+              <a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a>
+            </li>
+          </ul>
+        </li>
+
+        <span> </span>
+
+        <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+        <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
+        <li class="orange">
+          <a href="/logout">
+            Déconnexion
+            <i class="material-icons right"> exit_to_app</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Accès Mobile -->
+  <ul id="slide-out" class="sidenav">
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+
+    <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
+    <!-- <li><a href="/vue/Customers/clients.php">Clients</a></li> -->
+    <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
+    <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
+
+    <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+    <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+    <li class="orange">
+      <a href="/logout">
+        Déconnexion
+        <i class="material-icons right"> exit_to_app</i>
+      </a>
+    </li>
+  </ul>
+
   <body>
     <main class="container">
       <h3>Listes des clients</h3>
-      <a
-        class="btn-floating btn-large waves-effect waves-light red right"
-        href="/vue/Customerss/new"
-      >
-        <i class="material-icons">add</i></a
-      >
+      <a class="btn-floating btn-large waves-effect waves-light red right" href="/vue/Customers/new">
+        <i class="material-icons">add</i></a>
 
       <div class="row">
         <form name="Customers_filter" method="post" autocomplete="off">
           <div class="col m2">
             <div>
-              <label for="Customers_filter_name"> Nom </label
-              ><input
-                type="text"
-                id="Customers_filter_name"
-                name="Customers_filter[name]"
-              />
+              <label for="Customers_filter_name"> Nom </label><input type="text" id="Customers_filter_name" name="Customers_filter[name]" />
             </div>
           </div>
           <div class="col m2">
             <div>
-              <label for="Customers_filter_locality"> Ville </label
-              ><input
-                type="text"
-                id="Customers_filter_locality"
-                name="Customers_filter[locality]"
-              />
+              <label for="Customers_filter_locality"> Ville </label><input type="text" id="Customers_filter_locality" name="Customers_filter[locality]" />
             </div>
           </div>
           <div class="col m2">
             <div>
-              <label for="Customers_filter_postalCode"> Code postal </label
-              ><input
-                type="text"
-                id="Customers_filter_postalCode"
-                name="Customers_filter[postalCode]"
-              />
+              <label for="Customers_filter_postalCode"> Code postal </label><input type="text" id="Customers_filter_postalCode" name="Customers_filter[postalCode]" />
             </div>
           </div>
           <div class="col m2">
             <div>
-              <label for="Customers_filter_tel"> Numéro de téléphone </label
-              ><input
-                type="text"
-                id="Customers_filter_tel"
-                name="Customers_filter[tel]"
-              />
+              <label for="Customers_filter_tel"> Numéro de téléphone </label><input type="text" id="Customers_filter_tel" name="Customers_filter[tel]" />
             </div>
           </div>
           <div class="col m2">
             <div>
-              <label for="Customers_filter_email"> E-mail de facturation </label
-              ><input
-                type="text"
-                id="Customers_filter_email"
-                name="Customers_filter[email]"
-              />
+              <label for="Customers_filter_email"> E-mail de facturation </label><input type="text" id="Customers_filter_email" name="Customers_filter[email]" />
             </div>
           </div>
 
           <input class="btn" type="submit" value="Filtrer" />
-          <input
-            type="hidden"
-            id="Customers_filter__token"
-            name="Customers_filter[_token]"
-            value="CfkMdV1TOMcIbrHis13koq0GtDzVHsUTTN2VYKz6jOc"
-          />
+          <input type="hidden" id="Customers_filter__token" name="Customers_filter[_token]" value="CfkMdV1TOMcIbrHis13koq0GtDzVHsUTTN2VYKz6jOc" />
         </form>
       </div>
+
 
       <table class="striped">
         <thead>
@@ -174,45 +202,37 @@ ob_start();
         </thead>
         <tbody>
           <tr>
-            <td><a href="/vue/Customers/3">3</a></td>
+            <td><a href="vue/Customers/clients-detail.php">3</a></td>
             <td>MARATHON</td>
-            <td>Rue de l\'église, 1, 94000 RUNGIS</td>
+            <td>Rue de l'église, 1, 94000 RUNGIS</td>
             <td>014949494949</td>
             <td>commercial@marathon-str.fr</td>
             <td></td>
             <td>
-              <a class="btn orange" href="/vue/Customers/3/edit">Modifier</a>
+              <a class="btn orange" href="/vue/Customers/clients-detail.php">Modifier</a>
 
               <button class="btn red disableProfile" profileid="3">
                 Désactiver
               </button>
-              <button
-                class="btn green enableProfile"
-                style="display: none"
-                profileid="3"
-              >
+              <button class="btn green enableProfile" style="display: none" profileid="3">
                 Réactiver
               </button>
             </td>
           </tr>
           <tr>
-            <td><a href="/vue/Customers/6">6</a></td>
+            <td><a href="/vue/Customers/clients-detail.php">6</a></td>
             <td>GTM</td>
             <td>rue de la Paix, 26, 02200 SOISSONS</td>
             <td></td>
             <td>hotline@marathon-str.fr</td>
             <td></td>
             <td>
-              <a class="btn orange" href="/vue/Customers/6/edit">Modifier</a>
+              <a class="btn orange" href="/vue/Customers/clients-detail.php">Modifier</a>
 
               <button class="btn red disableProfile" profileid="6">
                 Désactiver
               </button>
-              <button
-                class="btn green enableProfile"
-                style="display: none"
-                profileid="6"
-              >
+              <button class="btn green enableProfile" style="display: none" profileid="6">
                 Réactiver
               </button>
             </td>
@@ -220,31 +240,34 @@ ob_start();
         </tbody>
       </table>
 
+
+
       <div class="navigation"></div>
     </main>
 
     <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function () {
-        window.onerror = function (error) {
+      document.addEventListener("DOMContentLoaded", function() {
+        window.onerror = function(error) {
           //alert(JSON.stringify(error));
         };
         App.init();
 
-        document.querySelectorAll("form").forEach(function (item) {
+        document.querySelectorAll("form").forEach(function(item) {
           item.setAttribute("autocomplete", "off");
         });
       });
     </script>
 
     <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function () {});
+      document.addEventListener("DOMContentLoaded", function() {});
     </script>
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <div id="sp-notification-wrapper"></div>
   </body>
-</html>';
+
+</html>'
 <?
 $menu = ob_get_clean();
 

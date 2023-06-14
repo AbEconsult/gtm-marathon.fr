@@ -1,8 +1,7 @@
 <?php
-echo "<br> (2) - Je passe dans Clients";
+
 if (!isset($_SESSION)) {
-  echo "<br> (2a) je test si la session est toujours active dans - clients - et passe pour la 1ère fois ";
-  echo "<br> (2b) je passe dans clients - pour la 1ère fois ";
+
   session_start();
 }
 
@@ -52,93 +51,76 @@ ob_start();
     
   </head>
   <body>
-    <style type="text/css">
+  <style type="text/css">
+    .row,
+    .input-field {
+      margin-bottom: 5px;
+    }
+
+    .checkbox-horizontal label {
+      margin-right: 20px;
+
+    }
+
+    nav {
+      background-color: red !important;
+    }
 
 
-      .row, .input-field{
-          margin-bottom: 5px;
-      }
-      .checkbox-horizontal label{
-          margin-right: 20px;
+    @media print and (min-resolution: 50dpi) {
+      body {
 
-      }
-
-                   nav { background-color: red !important; }
-
-
-      @media print and (min-resolution: 50dpi){
-              body{
-
-                  width: 100%
-              }
-              nav{
-                  display: none;
-              }
-          col s12 {
-              width: 50%
-          }
+        width: 100%
       }
 
-      @media only screen and (min-width: 601px){
-      .container {
-          width: 98%;
+      nav {
+        display: none;
+      }
+
+      col s12 {
+        width: 50%
       }
     }
-    </style>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" data-target="slide-out" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
+
+    @media only screen and (min-width: 601px) {
+      .container {
+        width: 98%;
+      }
+    }
+  </style>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"
+      ><i class="material-icons">menu</i></a
+    >
+    <a href="/" class="brand-logo">GTM MARATHON</a>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+
+      <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li>
+
+      <li><a href="/vue/Customers/clients.html">Clients</a></li>
+
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown1"
+          >Paramètres<i class="material-icons right">arrow_drop_down</i></a
         >
-        <a href="/" class="brand-logo">MARATHON</a>
-
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/vue/moderators/">Modérateurs</a></li>
-
-          <li><a href="/vue/drivers/">Conducteurs</a></li>
-
-          <li><a href="/vue/customer/">Clients</a></li>
-
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1"
-              >Paramètres<i class="material-icons right">arrow_drop_down</i></a
-            >
-            <ul id="dropdown1" class="dropdown-content" tabindex="0">
-              <li tabindex="0">
-                <a href="/vue/paymentmethod">Mode de paiment</a>
-              </li>
-              <li tabindex="0">
-                <a href="/vue/itemdelivery">Types de livraison</a>
-              </li>
-            </ul>
-          </li>
-
-          <span> </span>
-
-          <li><a href="/missions">Missions</a></li>
-
-          <li><a href="#">commercial@gtm-marathon.fr</a></li>
-          <li class="orange">
-            <a href="/logout">
-              Déconnexion
-              <i class="material-icons right"> exit_to_app</i>
-            </a>
+        <ul id="dropdown1" class="dropdown-content" tabindex="0">
+          <!-- <li tabindex="0">
+            <a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a>
+          </li> -->
+          <li tabindex="0">
+            <a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a>
           </li>
         </ul>
-      </div>
-    </nav>
+      </li>
 
-    <ul id="slide-out" class="sidenav">
-      <li><a href="/vue/moderators/">Modérateurs</a></li>
+      <span> </span>
 
-      <li><a href="/vue/drivers/">Conducteur</a></li>
-      <li><a href="/vue/customer/">Clients</a></li>
-      <li><a href="/vue/paymentmethod">Mode de paiment</a></li>
-      <li><a href="/vue/itemdelivery">Types de livraison</a></li>
+      <li><a href="/vue/Missions/missions.html">Missions</a></li>
 
-      <li><a href="/missions">Missions</a></li>
-
-      <li><a href="/profile/edit">commercial@gtm-marathon.fr</a></li>
+      <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
         <a href="/logout">
           Déconnexion
@@ -146,6 +128,27 @@ ob_start();
         </a>
       </li>
     </ul>
+  </div>
+</nav>
+<!-- Accès Mobile -->
+<ul id="slide-out" class="sidenav">
+  <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+
+  <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
+  <li><a href="/vue/Customers/clients.php">Clients</a></li>
+  <!-- <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li> -->
+  <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
+
+  <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+  <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+  <li class="orange">
+    <a href="/logout">
+      Déconnexion
+      <i class="material-icons right"> exit_to_app</i>
+    </a>
+  </li>
+</ul>
 
     <main class="container">
       <h3>Méthode de paiment</h3>

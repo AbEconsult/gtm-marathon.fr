@@ -1,6 +1,6 @@
 <?php
 
-// echo "<br> (2) je suis dans modele.inc après controlConnexion";
+echo "<br> (2) je suis dans modele.inc après controlConnexion";
 /**
  * Summary of connexion
  * @return mixed
@@ -10,7 +10,7 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    echo "<br> (***********) je suis connecté à la base marathon";
+    // echo "<br> (***********) je suis connecté à la base marathon";
     try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -19,7 +19,7 @@ function connexion()
         return $mysql;
         
     } catch (Exception $e) {
-        echo "<br> (**) je suis dans  - modeles/modele.inc - pour la 1ère fois et j'ai une erreur";
+        // echo "<br> (**) je suis dans  - modeles/modele.inc - pour la 1ère fois et j'ai une erreur";
         // en cas erreur on affiche un message et on arrete tout
         die('<h1>Erreur de connexion : </h1>' . $e->getMessage());
     }
@@ -63,5 +63,5 @@ function active($currect_page){
     } 
 }
 
-// echo "<br> (3) je retourne  dans  controlConnexion après modele.inc ";
+
 ?>

@@ -35,7 +35,7 @@ if (isset($_POST['login-btn'])) {
                 // require_once("Moderators/moderateurs.php");
             } elseif ($_SESSION['roles'] === "moderator" or $_SESSION['roles'] === "driver") {
                 // echo "<br> 11.d) je passe le test de la vérification de roles  = hotline ou dev dans controlConnexion et la valeur est égale à " . $_SESSION['roles'];
-                require_once("controllers/controlTickets.php");
+                require_once("vue/view_header.php");;
             }
         }
     } else {

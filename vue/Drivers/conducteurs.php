@@ -1,13 +1,12 @@
 <?php
-echo "<br> (2) - Je passe dans Conducteurs";
+
 if (!isset($_SESSION)) {
-  echo "<br> (2a) je test si la session est toujours active dans - conducteurs - et passe pour la 1ère fois ";
-  echo "<br> (2b) je passe dans conducteurs - pour la 1ère fois ";
+
   session_start();
 }
 
-ob_start();
 
+ob_start();
 ?>
 <html>
 
@@ -48,110 +47,191 @@ ob_start();
 
 
 </head>
+<style type="text/css">
+    .row,
+    .input-field {
+      margin-bottom: 5px;
+    }
 
-  <main class="container">
-    <h3>Les conducteurs</h3>
+    .checkbox-horizontal label {
+      margin-right: 20px;
 
-    <a
-      class="btn-floating btn-large waves-effect waves-light red right"
-      href="/vue/drivers/new"
+    }
+
+    nav {
+      background-color: red !important;
+    }
+
+
+    @media print and (min-resolution: 50dpi) {
+      body {
+
+        width: 100%
+      }
+
+      nav {
+        display: none;
+      }
+
+      col s12 {
+        width: 50%
+      }
+    }
+
+    @media only screen and (min-width: 601px) {
+      .container {
+        width: 98%;
+      }
+    }
+  </style>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"
+      ><i class="material-icons">menu</i></a
     >
-      <i class="material-icons">add</i></a
-    >
+    <a href="/" class="brand-logo">GTM MARATHON</a>
 
-    <table class="striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2</td>
-          <td>Abel</td>
-          <td>GTM-MARATHON</td>
-          <td>
-            <a class="btn orange" href="/vue/drivers/2/edit">Modifier</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a href="/">Accueil</a></li>
+      <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
 
-            <button class="btn red disableProfile" profileid="2">
-              Désactiver
-            </button>
-            <button
-              class="btn green enableProfile"
-              style="display: none"
-              profileid="2"
-            >
-              Réactiver
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>DEVARENNE</td>
-          <td>Yves</td>
-          <td>
-            <a class="btn orange" href="/vue/drivers/4/edit">Modifier</a>
+      <!-- <li><a href="/vue/Drivers/conducteurs.php">Conducteurs</a></li> -->
 
-            <button class="btn red disableProfile" profileid="4">
-              Désactiver
-            </button>
-            <button
-              class="btn green enableProfile"
-              style="display: none"
-              profileid="4"
-            >
-              Réactiver
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Jean</td>
-          <td>Jean</td>
-          <td>
-            <a class="btn orange" href="/vue/drivers/5/edit">Modifier</a>
+      <li><a href="/vue/Customers/clients.php">Clients</a></li>
 
-            <button class="btn red disableProfile" profileid="5">
-              Désactiver
-            </button>
-            <button
-              class="btn green enableProfile"
-              style="display: none"
-              profileid="5"
-            >
-              Réactiver
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown1"
+          >Paramètres<i class="material-icons right">arrow_drop_down</i></a
+        >
+        <ul id="dropdown1" class="dropdown-content" tabindex="0">
+          <li tabindex="0">
+            <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
+          </li>
+          <li tabindex="0">
+            <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
+          </li>
+        </ul>
+      </li>
 
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-      window.onerror = function (error) {
-        //alert(JSON.stringify(error));
-      };
-      App.init();
+      <span> </span>
 
-      document.querySelectorAll("form").forEach(function (item) {
-        item.setAttribute("autocomplete", "off");
-      });
+      <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+      <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
+      <li class="orange">
+        <a href="/logout">
+          Déconnexion
+          <i class="material-icons right"> exit_to_app</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Accès Mobile -->
+<ul id="slide-out" class="sidenav">
+  <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+
+  <!-- <li><a href="/vue/Drivers/conducteurs.html">Conducteur</a></li> -->
+  <li><a href="/vue/Customers/clients.php">Clients</a></li>
+  <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
+  <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
+
+  <li><a href="/vue/Missions/missions.php">Missions</a></li>
+
+  <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
+  <li class="orange">
+    <a href="/logout">
+      Déconnexion
+      <i class="material-icons right"> exit_to_app</i>
+    </a>
+  </li>
+</ul>
+
+<main class="container">
+  <h3>Les conducteurs</h3>
+
+  <a class="btn-floating btn-large waves-effect waves-light red right" href="/vue/drivers/new">
+    <i class="material-icons">add</i></a>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2</td>
+        <td>Abel</td>
+        <td>GTM-MARATHON</td>
+        <td>
+          <a class="btn orange" href="/vue/drivers/2/edit">Modifier</a>
+
+          <button class="btn red disableProfile" profileid="2">
+            Désactiver
+          </button>
+          <button class="btn green enableProfile" style="display: none" profileid="2">
+            Réactiver
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>DEVARENNE</td>
+        <td>Yves</td>
+        <td>
+          <a class="btn orange" href="/vue/drivers/4/edit">Modifier</a>
+
+          <button class="btn red disableProfile" profileid="4">
+            Désactiver
+          </button>
+          <button class="btn green enableProfile" style="display: none" profileid="4">
+            Réactiver
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Jean</td>
+        <td>Jean</td>
+        <td>
+          <a class="btn orange" href="/vue/drivers/5/edit">Modifier</a>
+
+          <button class="btn red disableProfile" profileid="5">
+            Désactiver
+          </button>
+          <button class="btn green enableProfile" style="display: none" profileid="5">
+            Réactiver
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    window.onerror = function(error) {
+      //alert(JSON.stringify(error));
+    };
+    App.init();
+
+    document.querySelectorAll("form").forEach(function(item) {
+      item.setAttribute("autocomplete", "off");
     });
-  </script>
+  });
+</script>
 
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {});
-  </script>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {});
+</script>
 
-  <div class="sidenav-overlay"></div>
-  <div class="drag-target"></div>
-  <div
-    id="sp-notification-wrapper"
-    style="
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+<div id="sp-notification-wrapper" style="
       bottom: 5px !important;
       right: 5px !important;
       width: 370px !important;
@@ -163,11 +243,8 @@ ob_start();
       z-index: 2147483647 !important;
       background: none !important;
       clip: auto !important;
-    "
-  ></div>
-  <div
-    id="sp-notification-wrapper"
-    style="
+    "></div>
+<div id="sp-notification-wrapper" style="
       bottom: 5px !important;
       right: 5px !important;
       width: 370px !important;
@@ -179,8 +256,7 @@ ob_start();
       z-index: 2147483647 !important;
       background: none !important;
       clip: auto !important;
-    "
-  ></div>
+    "></div>
 </body>';
 <?
 $menu = ob_get_clean();

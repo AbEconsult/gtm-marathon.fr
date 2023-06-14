@@ -1,4 +1,10 @@
-<html>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+ob_start();
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -39,7 +45,7 @@
 </head>
 
 <body>
-  <style type="text/css">
+  <!-- <style type="text/css">
     .row,
     .input-field {
       margin-bottom: 5px;
@@ -65,7 +71,7 @@
         display: none;
       }
 
-      col s12 {
+      col s12 {clients.php
         width: 50%
       }
     }
@@ -75,20 +81,20 @@
         width: 98%;
       }
     }
-  </style>
+  </style> -->
 <nav>
   <div class="nav-wrapper">
     <a href="#" data-target="slide-out" class="sidenav-trigger"
       ><i class="material-icons">menu</i></a
     >
-    <a href="/" class="brand-logo">MARATHON</a>
+    <a href="/" class="brand-logo">GTM MARATHON</a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/vue/moderators/moderateurs.html">Modérateurs</a></li>
+      <li><a href="/vue/Moderators/moderateurs.html">Modérateurs</a></li>
 
       <li><a href="/vue/Drivers/conducteurs.html">Conducteurs</a></li>
 
-      <li><a href="/vue/Customers/clients.html">Clients</a></li>
+      <li><a href="/vue/Customers/clients.php">Clients</a></li>
 
       <li>
         <a class="dropdown-trigger" href="#!" data-target="dropdown1"
@@ -103,12 +109,11 @@
           </li>
         </ul>
       </li>
-
-      <span> </span>
-
+      
       <li><a href="/vue/Missions/missions.html">Missions</a></li>
 
-      <li><a href="#">commercial@gtm-marathon.fr</a></li>
+
+      <li><a href="#"><span><?= $_SESSION['email'] ?></span></a></li>
       <li class="orange">
         <a href="/logout">
           Déconnexion
@@ -123,7 +128,7 @@
   <li><a href="/vue/moderators/moderateurs.html">Modérateurs</a></li>
 
   <li><a href="/vue/Drivers/conducteurs.html">Conducteur</a></li>
-  <li><a href="/vue/Customers/clients.html">Clients</a></li>
+  <li><a href="/vue/Customers/clients.php">Clients</a></li>
   <li><a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a></li>
   <li><a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a></li>
 
@@ -141,7 +146,7 @@
   <main class="container">
     <h3>Fiche client</h3>
 
-    <a class="btn" href="/admin/customer/">Retour vers la liste</a>
+    <a class="btn" href="/vue/Customers/clients.php">Retour vers la liste</a>
 
     <ul class="tabs">
       <li class="tab col s3">
@@ -415,3 +420,8 @@
   </div>
 </body>
 </html>
+<?
+$menu = ob_get_clean();
+
+require_once('vue/view_header.php');
+require_once('vue/modele.php');

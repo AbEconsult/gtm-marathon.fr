@@ -14,6 +14,7 @@ ob_start();
             <? echo "variable session =" . $_SESSION['email'] ?>
             <style type="text/css">
                 .row,
+
                 .input-field {
                     margin-bottom: 5px;
                 }
@@ -34,7 +35,7 @@ ob_start();
                         width: 100%
                     }
 
-                    
+
 
                     nav {
                         display: none;
@@ -63,24 +64,48 @@ ob_start();
 
     <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo" id="compagny">GTM MARATHON</a>
-        <?php if ($_SESSION['roles'] === "admin") { ?>
-            <div class="container">
-                <div class="navbar-nav m-8">
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
-                        <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a></li>
-                    </ul>
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><a href="accueil">Accueil</a></li>
-                        <li><a href="vue/Customers/clients.php">Client</a></li>
-                        <li><a href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
-                        <li><a href="vue/Missions/missions">Missions</a></li>
-                    </ul>
-                    <script>
+        <div class="container">
+            <div class="row">
+                <a href="#" class="brand-logo s2 push-s5" id="compagny">GTM MARATHON</a>
+                <?php if ($_SESSION['roles'] === "admin") { ?>
+                    <div class="right hide-on-med-and-down s2-pull-s3">
+                        <!-- <span class="m-2"> -->
+                        <!-- <i class="fa-solid fa-user mt-2"></i> -->
+                        <span class=""><?= $_SESSION['email'] ?></span>
+
+
+                        <span class="navbar-nav s2-pull-s3">
+                            <a class="right hide-on-med-and-down orange" href='modeles/deconnexion.php'>deconnexion</a>
+                            <i class="material-icons right orange"> exit_to_app</i>
+                        </span>
+                        <!-- </span> -->
+                    </div>
+                    <div class="navbar-nav s6-push-s8">
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
+                            <li>
+                                <a class="dropdown-trigger" href="/vue/Parametres/parametres-mode_paiements.php" data-target="dropdown1">Paramètres<i class="material-icons right">arrow_drop_down</i></a>
+                                <ul id="dropdown1" class="dropdown-content" tabindex="0">
+                                    <li tabindex="0">
+                                        <a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a>
+                                    </li>
+                                    <li tabindex="0">
+                                        <a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a></li>
+                        </ul>
+                        <ul class="sidenav" id="mobile-demo">
+                            <li><a href="accueil">Accueil</a></li>
+                            <li><a href="vue/Customers/clients.php">Client</a></li>
+                            <li><a href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
+                            <li><a href="vue/Missions/missions">Missions</a></li>
+                        </ul>
+                        <!-- <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             var elems = document.querySelectorAll('.sidenav');
                             var instances = M.Sidenav.init(elems, options);
@@ -91,36 +116,27 @@ ob_start();
                         $(document).ready(function() {
                             $('.sidenav').sidenav();
                         });
-                    </script>
-                </div>
-                <?php if ($_SESSION['roles'] === "moderator") { ?>
-                    <div class="navbar-nav m-8">
-                        <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                        <a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a>
-                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
+                    </script> -->
                     </div>
-                <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
-                    <div class="navbar-nav m-8">
-                        <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
-                    </div>
-                <?php } ?>
+                    <?php if ($_SESSION['roles'] === "moderator") { ?>
+                        <div class="navbar-nav s6-pull-s8">
+                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                            <a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a>
+                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
+                        </div>
+                    <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
+                        <div class="navbar-nav s6-pull-s8">
+                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
+                        </div>
+                    <?php } ?>
 
-                <div class="right hide-on-med-and-down">
-                    <!-- <span class="m-2"> -->
-                    <!-- <i class="fa-solid fa-user mt-2"></i> -->
-                    <span class=""></span><?= $_SESSION['email'] ?></span>
-                    <span> </span>
-                    <span class="navbar-nav m-4">
-                        <a class="right hide-on-med-and-down orange" href='modeles/deconnexion.php'>deconnexion</a>
-                    </span>
-                    <!-- </span> -->
-                </div>
 
             </div>
+        </div>
 
 
-        <?php } ?>
+    <?php } ?>
     </div>
     </nav>
 

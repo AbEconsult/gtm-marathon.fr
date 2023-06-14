@@ -1,7 +1,7 @@
 <?php
 require_once("modeles/modele.inc.users.php");
 
-$action = 'listUsers';
+$action = 'accueil';
 
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -47,7 +47,7 @@ if (isset($_POST['action'])) {
             require_once("Vue/view_resultatUser.php");      
             break;
         
-        case 'list_User':
+        case 'listUsers':
             // 1 - Afficher un formulaire
             $titre = "Rechercher un utilisateur";
             $tUsers = listUsers($email);

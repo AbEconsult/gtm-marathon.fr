@@ -58,35 +58,35 @@ function connectUser ($email)
     }
 }
 
-// /**
-//  * Summary of insUser
-//  * @param mixed $nom
-//  * @param mixed $user_can
-//  * @param mixed $email
-//  * @param mixed $mdp
-//  * @param mixed $id_service
-//  * @return bool
-//  */
-// function insUser(string $nom, string $user_can, string $email, string $mdp, int $id_service)
-// {
-//     echo "<br> je passe dans function insUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+/**
+ * Summary of insUser
+ * @param mixed $nom
+ * @param mixed $user_can
+ * @param mixed $email
+ * @param mixed $mdp
+ * @param mixed $id_service
+ * @return bool
+ */
+function insUser(string $nom, string $user_can, string $email, string $mdp, int $id_service)
+{
+    echo "<br> je passe dans function insUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
+    $mysql = connexion();
 
-//     $sql = "INSERT INTO user (username,username_canonical,email,pwd,roles) VALUES (?,?,?,?,?,?)";
+    $sql = "INSERT INTO user (username,username_canonical,email,pwd,roles) VALUES (?,?,?,?,?,?)";
 
-//     $reponse = $mysql->prepare($sql);
+    $reponse = $mysql->prepare($sql);
 
 
-//     try {
-//         $resultatsI = $reponse->execute([$nom,$user_can,$email,$mdp,$id_service]);
-//     } catch (PDOException $e) {
-//         $resultatsI = false;
-//     }
+    try {
+        $resultatsI = $reponse->execute([$nom,$user_can,$email,$mdp,$id_service]);
+    } catch (PDOException $e) {
+        $resultatsI = false;
+    }
 
-//     $reponse->closeCursor();
-//     echo "<h1> Le salarié  ".$nom." à bien été crée</h1>";
-//     return $resultatsI;
-// }
+    $reponse->closeCursor();
+    echo "<h1> Le salarié  ".$nom." à bien été crée</h1>";
+    return $resultatsI;
+}
 
 /**
  * Summary of searchUser
@@ -115,77 +115,77 @@ function searchUser(string $nom,string $email)
 
 }
 
-// /**
-//  * Summary of searchId
-//  * @param mixed $id
-//  * @return mixed
-//  */
-// function searchId(int $id)
-// {
-//     echo "<br> je passe dans function searchId - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+/**
+ * Summary of searchId
+ * @param mixed $id
+ * @return mixed
+ */
+function searchId(int $id)
+{
+    echo "<br> je passe dans function searchId - modeles/modele.inc.users.php - pour la 1ère fois ";
+    $mysql = connexion();
 
-//     $sql = ("SELECT * FROM user  WHERE id=?");
+    $sql = ("SELECT * FROM user  WHERE id=?");
 
-//     $resultatsM = $mysql->prepare($sql);
+    $resultatsM = $mysql->prepare($sql);
 
-//     $resultatsM->execute([$id]);
+    $resultatsM->execute([$id]);
 
-//     $users = $resultatsM->fetch(PDO::FETCH_ASSOC);
+    $users = $resultatsM->fetch(PDO::FETCH_ASSOC);
 
-//     return $users;
-// }
+    return $users;
+}
 
-// /**
-//  * Summary of updUsers
-//  * @param mixed $users
-//  * @return PDOStatement|bool
-//  */
-// function updUsers(string $users)
-// {
-//     echo "<br> je passe dans function updUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+/**
+ * Summary of updUsers
+ * @param mixed $users
+ * @return PDOStatement|bool
+ */
+function updUsers(string $users)
+{
+    echo "<br> je passe dans function updUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
+    $mysql = connexion();
 
-//     // $id=$_GET['id'];
+    // $id=$_GET['id'];
 
-//     $sql = "UPDATE user SET username = :nom,user_can=:user_canonical,email=:email WHERE id=:id";
-//     // $sql = "UPDATE users SET nom=:nom,user_can=:user_can,phone=:phone WHERE id=:id";
-
-
-//     $resultatsM = $mysql->prepare($sql);
+    $sql = "UPDATE user SET username = :nom,user_can=:user_canonical,email=:email WHERE id=:id";
+    // $sql = "UPDATE users SET nom=:nom,user_can=:user_can,phone=:phone WHERE id=:id";
 
 
-//     $resultatsM->execute([":id" => $users['id'], ":nom" => $users['username'], ":user_can" => $users['username_canonical'], ":email" => $users['email']]);
+    $resultatsM = $mysql->prepare($sql);
 
 
-//     $resultatsM->closeCursor();
-//     echo "<h1> L'intervenant ".$users['username']." à bien été modifié</h1>";
+    $resultatsM->execute([":id" => $users['id'], ":nom" => $users['username'], ":user_can" => $users['username_canonical'], ":email" => $users['email']]);
 
-//     return $resultatsM;
-// }
 
-// /**
-//  * Summary of delUser
-//  * @param mixed $id
-//  * @return PDOStatement|bool
-//  */
-// function delUser(int $id)
-// {
-//     echo "<br> je passe dans function delUser - modeles/modele.inc.users.php - pour la 1ère fois ";
-//     $mysql = connexion();
+    $resultatsM->closeCursor();
+    echo "<h1> L'intervenant ".$users['username']." à bien été modifié</h1>";
 
-//     $sql = "DELETE FROM user  WHERE id=?";
+    return $resultatsM;
+}
+
+/**
+ * Summary of delUser
+ * @param mixed $id
+ * @return PDOStatement|bool
+ */
+function delUser(int $id)
+{
+    echo "<br> je passe dans function delUser - modeles/modele.inc.users.php - pour la 1ère fois ";
+    $mysql = connexion();
+
+    $sql = "DELETE FROM user  WHERE id=?";
     
-//     $resultatsD = $mysql->prepare($sql);
+    $resultatsD = $mysql->prepare($sql);
     
-//     $resultatsD->execute([$id]);
+    $resultatsD->execute([$id]);
     
-//     // echo "le nombre d'enregistrement touché est de : ".$resultatsD->rowCount();
-//     echo "<br><h1>L'indentifiant N° : $id vient d'être supprimé</h1>";
+    // echo "le nombre d'enregistrement touché est de : ".$resultatsD->rowCount();
+    echo "<br><h1>L'indentifiant N° : $id vient d'être supprimé</h1>";
 
 
-//     $resultatsD->closeCursor();
+    $resultatsD->closeCursor();
     
-//     return $resultatsD;
-// }
+    return $resultatsD;
+}
 echo "<br> 5) je retourne sur controlConnexion ";
