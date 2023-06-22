@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION)) {
   echo "<br> (1) je test si la session est toujours active dans - login - et passe pour la 1ère fois ";
-  // echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
+  echo "<br> (1.a) je passe dans login - pour la 1ère fois ";
   session_start();
 }
 
@@ -18,7 +18,7 @@ ob_start();
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
-  <title>GTM-Marathon - Welcome!</title>
+  <title>GTM - Welcome!</title>
 
   <style>
 
@@ -123,7 +123,7 @@ ob_start();
       <a href="#" data-target="slide-out" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
-      <a href="index.php" class="brand-logo">GTM-MARATHON</a>
+      <a href="index.php" class="brand-logo">GTM</a>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -145,13 +145,14 @@ ob_start();
     </li>
   </ul>
 
-  <form name="login-btn" action="index.php" method="post" class="form-signin">
-    <input type="hidden" name="_csrf_token" value="Qa9evAsiOEdd0uDl85M49H_OSDYA55nhtsvuYxJAEoI" />
+  <form name="login-btn" action="accueil" method="post" class="form-signin">
+    <!-- <h3>'je passe dans login et la valeur de action = '<0?$_POST['accueil']?></h3> -->
+    <!-- <input type="hidden" name="_csrf_token" value="Qa9evAsiOEdd0uDl85M49H_OSDYA55nhtsvuYxJAEoI" /> -->
     <div class="login-container">
       <h1>Connectez-vous sur votre compte</h1><br>
       <form>
         <label for="email">Email</label>
-        <input type="text" id="username" name="email" value="" required="required" />
+        <input type="text" id="email" name="email" value="" required="required" />
         <label for="pwd">Mot de passe</label>
         <input type="password" id="password" name="pwd" required="required" />
 
@@ -163,7 +164,7 @@ ob_start();
         </p>
 
         <div>
-          <input type="submit" class="btn " id="_submit" name="login-btn" value="Connexion" />
+          <input type="submit" class="btn" id="_submit" name="login-btn" value="Connexion" />
         </div>
 
       </form>

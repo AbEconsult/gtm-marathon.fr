@@ -108,10 +108,10 @@ ob_start();
         >
         <ul id="dropdown1" class="dropdown-content" tabindex="0">
           <li tabindex="0">
-            <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
+            <a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a>
           </li>
           <li tabindex="0">
-            <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
+            <a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a>
           </li>
         </ul>
       </li>
@@ -122,7 +122,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="modeles/deconnexion.php">
+        <a href="/modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -143,7 +143,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="modeles/deconnexion.php">
+    <a href="/modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>

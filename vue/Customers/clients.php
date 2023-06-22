@@ -119,7 +119,7 @@ ob_start();
 
         <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
         <li class="orange">
-          <a href="modeles/deconnexion.php">
+          <a href="/modeles/deconnexion.php">
             Déconnexion
             <i class="material-icons right"> exit_to_app</i>
           </a>
@@ -141,7 +141,7 @@ ob_start();
 
     <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
     <li class="orange">
-      <a href="modeles/deconnexion.php">
+      <a href="/modeles/deconnexion.php">
         Déconnexion
         <i class="material-icons right"> exit_to_app</i>
       </a>
@@ -269,7 +269,16 @@ ob_start();
 
 </html>'
 <?
-$menu = ob_get_clean();
+
+
+$tClient = listCustomer($nom);
+foreach($cli1 as $tClients){
+  $_SESSION['name_customer'] = $tClient[0]['name_customer'];
+            $_SESSION['discr'] = $tClient[0]['discr'];
+            
+      echo $tclient[0];
+}
+      $menu = ob_get_clean();
 
 require_once('vue/view_header.php');
 require_once('vue/modele.php');

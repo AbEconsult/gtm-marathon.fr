@@ -1,30 +1,35 @@
 <?php
+// je charge les fonctions de modele.ic.users 
 require_once("modeles/modele.inc.users.php");
+echo"<br> 03 ) je passe dans modele.in.users ";
+$action = 'list_Users';
 
-$action = 'accueil';
-
-if (isset($_GET['action'])) {
+if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
-if (isset($_POST['action'])) {
+if (!empty($_POST['action'])) {
     $action = $_POST['action'];
 }
 
+echo "<br> 03 a) la valeur de action dans controlUsers = ".$action;
+// var_dump($_POST['action']);
 
     switch ($action) {
 
         case 'list_Users':
-    // echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
+    echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
             // 1 - récupérer la liste des utilisateurs
-    // echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
-            // $tUsers = listUsers($email);
+    echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
+            $tUsers = getlistUsers();
+            echo "<br>controlUsers-2 a:la valeur de tUsers = ".count($tUsers);
+
             // 2 - afficher la liste des utilisateurs
             $titre = "Utilisateurs";
     // echo "<br> 4ème passage";
-    // echo "<br> controlUsers-3 : je reviens de model_user et repasse par là après avoir lancé la fonction list_Users et part dans la view_listUsers";
+    echo "<br> controlUsers-3 : je reviens de model_user et repasse par control_users après avoir lancé la fonction list_Users et part dans la view_listUsers";
     
-            // require_once("Vue/view_listUsers.php");
-            require_once("vue/view_accueil.php");
+            require_once("vue/view_listUsers.php");
+            // require_once("vue/view_accueil.php");
             break;
     
         case 'ajoutUser':
@@ -34,13 +39,13 @@ if (isset($_POST['action'])) {
             break;
     
         case 'MAJajoutUser':
-            $nom = strtoupper($_POST['username']);
-            $prenom = ucfirst(strtolower($_POST['prenom']));
+            $nom = strtoupper($_POST['user_firstname']);
+            $prenom = ucfirst(strtolower($_POST['user_lastname']));
             $roles = $_POST['roles'];
             $email = strtolower($prenom.'.'.$nom.'@gtm-marathon.fr');
             $pwd = password_hash($_POST ['pwd'], PASSWORD_DEFAULT);
     
-            // 2 - Enregistrer le nouveau client dans la BDD
+            // 2 - Enregistrer le nouveau user dans la BDD
             $resultat = insUser($nom,$prenom,$roles,$email,$pwd);
     
             // 3 - Afficher le résultat à l'utilisateur
@@ -58,8 +63,8 @@ if (isset($_POST['action'])) {
     
         case 'MAJlistUsers':
             // 1 - Récupérer les données de la recherche
-            $nom = strtoupper($_POST['username']);
-            $prenom = ucfirst(strtolower($_POST['prenom']));
+            $nom = strtoupper($_POST['user_firstname']);
+            $prenom = ucfirst(strtolower($_POST['user_lastname']));
             $roles = $_POST['roles'];
             $email = strtolower($_POST['email']);
     
@@ -74,10 +79,10 @@ if (isset($_POST['action'])) {
         case 'supprimer':
             // 1 - Récupérer l'identifiant de l'utilisateur
             $id_user = $_POST['id'];
-            $id_service = $_POST['roles'];
+            $id_profil = $_POST['roles'];
     
-            // 2 - Supprimer le client dans la BDD
-            $resultat = delUser($id_user, $id_service);
+            // 2 - Supprimer le user dans la BDD
+            $resultat = delUser($id_user, $id_profil);
     
             // 3 - Afficher le résultat à l'utilisateur
             $titre = "Suppression d'un utilisateur";
@@ -86,26 +91,28 @@ if (isset($_POST['action'])) {
             break;
             
         case 'modifier':
-            // 1 - Récupérer l'identifiant du client
-            $id_user = $_POST['id_user'];
+            // 1 - Récupérer l'identifiant du user
+            echo" <br> 03 b) le numéro d'ID selectionné est le = ".($_POST['id']);
+            $id_user = $_POST['id'];
                     
-            // 2 - Récupérer les infos du client
-            $user = updUser($id_user);
-        
+            // 2 - Récupérer les infos du user
+            $user = getUserById($id_user);
+            var_dump($user);
+
             // afficher le formulaire prérempli
             $titre = "Modifier un utilisateur";
-            require("Vue/view_formModif.php");    
+            require("vue/Users/view_modifUsers.php");    
             break;
         
         case 'MAJmodifier':
-            // 1 - Récupérer l'identifiant du client
-            $id_user = $_POST['id_user'];
+            // 1 - Récupérer l'identifiant du user
+            $id_user = $_POST['id'];
                     
-            // 2 - Modifier le client dans la BDD
-            $user = ["id_user" => $id_user, "nom" => $_POST['username'], "prenom" => $_POST['prenom'], 
+            // 2 - Modifier le user dans la BDD
+            $user = ["id" => $id_user, "nom" => $_POST['user_firstname'], "prenom" => $_POST['user_lastname'], 
                         "pwd" => password_hash($_POST ['pwd'], PASSWORD_DEFAULT), "roles"=> $_POST['roles']];
         
-            $resultat = MajupdUser($user);
+            $resultat = updUser($user);
         
             // 3 - Afficher le résultat à l'utilisateur
             $titre = "Modification d'un utilisateur";

@@ -6,7 +6,8 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-ob_start();
+
+// ob_start();
 
 ?>
 <html>
@@ -117,7 +118,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="modeles/deconnexion.php">
+        <a href="/modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -138,7 +139,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="modeles/deconnexion.php">
+    <a href="/modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>
@@ -159,7 +160,27 @@ ob_start();
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    
+    <?php
+echo"<br> je repars dans controlUsers depuis moderateurs";
+// require_once("controllers/controlUsers.php");
+echo "<br>controlUsers-2 a:la valeur de tUsers = ".count($tUsers);
+$tUsers = getlistUsers();
+
+if ($tUsers['roles'] === 'moderator') {
+    foreach ($tUsers as $users) {
+      $contenu = "<Nom> Id :" . $users['id']
+        . "</br>Nom : " . $users['user_firstname']
+        . "</br>Prenom : " . $users['user_lastname']
+        . "</br>Email : " . $users['email']
+        . "</br>Profil : " . $users['roles']
+        . "<hr>"
+        . "<form action='index.php' method='post'></br>"
+        . "<input type='submit' name='action' value='modifier'>"
+        . "<input type='submit' name='action' value='supprimer'></br>"
+        . "<input type='hidden' name='id'value='" . $users['id'] . "'/></br>"
+        . "</form>";
+    '<tbody>
       <tr>
         <td>1</td>
         <td>ELABJANI</td>
@@ -227,9 +248,10 @@ ob_start();
 </body>
 
 </html>';
-<?
+    }
+  }
+echo "contenu = ".$contenu;
+// $contenu = ob_get_clean();
 
-$contenu = ob_get_clean();
-
-require_once("vue/view_header.php");
+require_once('vue/view_header.php');
 require_once('vue/modele.php');

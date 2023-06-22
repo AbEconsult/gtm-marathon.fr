@@ -120,7 +120,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="modeles/deconnexion.php">
+        <a href="/modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -141,7 +141,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="modeles/deconnexion.php">
+    <a href="/modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>
@@ -199,7 +199,7 @@ ob_start();
               id="appbundle_profile_email"
               name="appbundle_profile[email]"
               required="required"
-              value="commercial@gtm-marathon.fr"
+              value="commercial@groupetransportmarathon.fr"
               style="
                 background-image: url('moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png') !important;
                 background-position: 98% 50% !important;
@@ -360,7 +360,7 @@ ob_start();
                   type="email"
                   id="appbundle_profile_billingAddress_email"
                   name="appbundle_profile[billingAddress][email]"
-                  value="commercial@gtm-marathon.fr"
+                  value="commercial@groupetransportmarathon.fr"
                   style="
                     background-image: url('moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png') !important;
                     background-position: 98% 50% !important;

@@ -18,7 +18,7 @@ ob_start();
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
-  <title>GTM-Marathon - Welcome!</title>
+  <title>GTM - Welcome!</title>
 
   <style>
 
@@ -123,14 +123,14 @@ ob_start();
       <a href="#" data-target="slide-out" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
-      <a href="index.php" class="brand-logo">GTM-MARATHON</a>
+      <a href="index.php" class="brand-logo">GTM</a>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
         <span></span>
 
         <li>
-          <a href="index.php" class="blue">GTM-MARATHON</a>
+          <a href="index.php" class="blue">GTM</a>
         </li>
 
       </ul>
@@ -140,7 +140,7 @@ ob_start();
   <ul id="slide-out" class="sidenav">
 
     <li>
-      <a href="index.php" class="blue">GTM-MARATHON</a>
+      <a href="index.php" class="blue">groupetransportmarathon</a>
     </li>
     </li>
   </ul> -->
@@ -175,10 +175,10 @@ ob_start();
   <div class="text-danger"><?=$loginError;?></div>
   <?php }?>
   
-  <main class="container"></main>
+  <!-- <main class="container"></main> -->
 
 </body>
-</html>';
+</html>
 <?
 
 $contenu = ob_get_clean();

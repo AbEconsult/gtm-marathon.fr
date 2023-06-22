@@ -2,19 +2,17 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
+// echo "<br> ********5 je suis dans view_header et la valeur de session email =".$_SESSION['email'];
 ob_start();
 ?>
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <img class="logo" src="" alt="">
-
+        <!-- <?//echo"<br> *********6 je passe dans accueil pour la 1ère fois et tUsers =".$tUsers[0];?> -->
         <?php if (!isset($_SESSION['email'])) { ?>
             <? echo "variable session =" . $_SESSION['email'] ?>
             <style type="text/css">
                 .row,
-
                 .input-field {
                     margin-bottom: 5px;
                 }
@@ -35,8 +33,6 @@ ob_start();
                         width: 100%
                     }
 
-
-
                     nav {
                         display: none;
                     }
@@ -50,28 +46,23 @@ ob_start();
                     .container {
                         width: 98%;
                     }
-
                 }
             </style>
     </div>
 
 </nav>
-
 <?php } else { ?>
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button> -->
-
-    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
     <div class="nav-wrapper">
         <div class="container">
             <div class="row">
-                <a href="#" class="brand-logo s2 push-s5" id="compagny">GTM MARATHON</a>
+                <a href="#" class="brand-logo s2 push-s5" id="compagny">GTM</a>
+                <!-- <? //echo"<br> ********10 je ne passe dans le test view_header pour la 1ère fois ";?> -->
                 <?php if ($_SESSION['roles'] === "admin") { ?>
+                    <!-- <? //echo"<br> ********10 je passe dans view_header pour la 1ère fois et tUsers =".$tUsers[0];?> -->
                     <div class="right hide-on-med-and-down s2-pull-s3">
                         <!-- <span class="m-2"> -->
                         <!-- <i class="fa-solid fa-user mt-2"></i> -->
-                        <span class=""><?= $_SESSION['email'] ?></span>
+                        <span class=""><?$_SESSION['email'] ?></span>
 
 
                         <span class="navbar-nav s2-pull-s3">
@@ -83,7 +74,8 @@ ob_start();
                     <div class="navbar-nav s6-push-s8">
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a></li>
+                            <li><a class="right hide-on-med-and-down <?php active('List_Users'); ?>" aria-current="page" href="vue/view_listUsers.php">Users</a></li>
                             <li><a class="right hide-on-med-and-down <?php active('listModerators'); ?>" aria-current="page" href="vue/Moderators/moderateurs.php">Moderateurs</a></li>
                             <li><a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a></li>
                             <li><a class="right hide-on-med-and-down <?php active('liste_drivers'); ?>" href="vue/Drivers/conducteurs.php">Conducteurs</a></li>
@@ -120,33 +112,30 @@ ob_start();
                         });
                     </script> -->
                     </div>
-                    <?php } ?>
-                    <?php if ($_SESSION['roles'] === "moderator") { ?>
-                        <div class="navbar-nav s6-pull-s8">
-                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                            <a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a>
-                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
-                        </div>
-                    <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
-                        <div class="navbar-nav s6-pull-s8">
-                            <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
-                            <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
-                        </div>
-                    <?php } ?>
-
+                <?php } ?>
+                <?php if ($_SESSION['roles'] === "moderator") { ?>
+                    <div class="navbar-nav s6-pull-s8">
+                        <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                        <a class="right hide-on-med-and-down <?php active('listCustomer'); ?>" href="vue/Customers/clients.php">Client</a>
+                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
+                    </div>
+                <?php } elseif ($_SESSION['roles'] === "user" or $_SESSION['roles'] === "customer") { ?>
+                    <div class="navbar-nav s6-pull-s8">
+                        <a class="right hide-on-med-and-down <?php active('accueil'); ?>" aria-current="page" href="accueil">Accueil</a>
+                        <a class="right hide-on-med-and-down <?php active('missions'); ?>" href="vue/Missions/missions">Missions</a>
+                    </div>
+                <?php } ?>
+                }
 
             </div>
         </div>
 
-
-    <?php } ?>
+        <?php } ?>
     </div>
     </nav>
+    <?
+    $menu = ob_get_clean();
+    
+    // require_once('vue/view_header.php');
+    require_once('vue/modele.php');
 
-<?php
-            $menu = ob_get_clean();
-
-
-            require_once('vue/modele.php');
-        // }
-?>

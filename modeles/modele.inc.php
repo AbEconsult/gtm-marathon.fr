@@ -9,7 +9,7 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    echo "<br> (***********) je suis connecté à la base marathon";
+    echo "<br> (**********1) je suis connecté à la base marathon";
     try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -27,24 +27,25 @@ function connexion()
 /**
  * Contrôle si l'utilisateur entré dans le formulaire de connexion est dans la base de données
  * et retourne un tableau si c'est le cas avec le nom, prénom, email et profil
- * @param string $mail L'email de l'utilisateur qui sert d'identifiant
+ * @param string $email L'email de l'utilisateur qui sert d'identifiant
  * @return array 
  */
-function getConnexion(string $mail) {
+function getConnexion(string $email) {
     $mysql = connexion();
-    
-    $sql = "SELECT username,u.email, pwd, roles FROM user u 
-                INNER JOIN profil p ON u.email = p.email 
-            WHERE u.email = :mail";
+    echo "<br> (**********2) je récupère la connexion à la base marathon - dans getconnexion(email)";
+    $sql = "SELECT user_lastname,u.email, pwd, u.roles, p.roles FROM user u 
+                INNER JOIN profil p ON u.id = p.id 
+            WHERE u.email = :email";
     $recupUser = $mysql->prepare($sql);
-
-    $recupUser->execute([":mail" => $mail]);
+    $recupUser->execute([":email" => $email]);
 
     $tUsers = $recupUser->fetchAll(PDO::FETCH_ASSOC);
 
     $recupUser->closeCursor();
-    $mysql = null;
+    echo "<br> (**********3) je récupère la valeur de tUsers depuis la base marathon - dans getconnexion(email)";
 
+    $mysql = null;
+    
     return $tUsers;
 }
 

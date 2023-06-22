@@ -1,24 +1,24 @@
 <?php
 require_once("modeles/modele.inc.php");
-echo "<br> (1) je suis dans - modele.inc.users - et passe pour la 1ère fois ";
-function listUsers ($email)
-{
-    echo "<br> je passe dans function listUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
-    {
+echo "<br> (01) je suis dans - modele.inc.users - et passe pour la 1ère fois";
+// function listUsers ($email)
+// {
+//     echo "<br> je passe dans function listUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
+//     {
 
-        $mysql = connexion();
+//         $mysql = connexion();
     
-        $sql = ("SELECT * FROM user  WHERE email=?");
+//         $sql = ("SELECT * FROM user  WHERE email=?");
     
-        $resultatsM = $mysql->prepare($sql);
+//         $resultatsM = $mysql->prepare($sql);
     
-        $resultatsM->execute([$email]);
+//         $resultatsM->execute([$email]);
     
-        $users = $resultatsM->fetch(PDO::FETCH_ASSOC);
+//         $tUsers = $resultatsM->fetch(PDO::FETCH_ASSOC);
     
-        return $users;
-    }
-}
+//         return $tUsers;
+//     }
+// }
 
 
 /**
@@ -45,13 +45,12 @@ function connectUser ($email)
     }
 }
 function getListUsers(){
+    echo "<br> 05) je passe dans getListUsers de modele.inc.users"; 
     $connexion=connexion();
 
     //prepare la requête SQL
-    $sql = "SELECT u.id_user,u.nom_user,u.prenom_user,u.email,u.roles,p.type_profil
-            FROM user u
-	        JOIN profil p ON u.roles=p.roles
-            ORDER BY id_user";
+    $sql = "SELECT id,user_firstname,user_lastname,email,roles
+            FROM user ORDER BY id";
     //execute la requete
     $curseur=$connexion->query($sql);
 
@@ -65,6 +64,7 @@ function getListUsers(){
     $connexion = null;
 
     // retourn le tableau
+
     return $record;
 }
 
@@ -73,7 +73,7 @@ function addUser(string $nom, string $prenom, int $profil, string $email, string
 
     // Préparer la requête SQL
     $sql1="SELECT email FROM user WHERE email = :email";
-    $sql2 = "INSERT INTO user (nom_user, prenom_user, roles, email, mdp) VALUES (?,?,?,?,?)";
+    $sql2 = "INSERT INTO user (user_firstname, user_lastname, roles, email, mdp) VALUES (?,?,?,?,?)";
 
     //Enregistre la requête 1
     $request = $connexion->prepare($sql1);
@@ -112,15 +112,15 @@ function list_User(string $nom,string $email,int $profil) {
 
     // Préparer la requête SQL
     if ($profil!=""){
-        $sql = "SELECT u.id,u.username,u.email,u.roles,p.discr
+        $sql = "SELECT u.id,u.user_lastname,u.email,u.roles,p.discr
                 FROM user u
-                JOIN profil p ON u.roles=p.discr
-                WHERE username LIKE :nom AND email LIKE :email AND u.roles = :roles;";}
+                JOIN profil p ON u.roles=p.roles
+                WHERE user_lastname LIKE :nom AND email LIKE :email AND u.roles = :roles;";}
     else {
-        $sql = "SELECT u.id,u.username,u.email,u.roles,p.discr
+        $sql = "SELECT u.id,u.user_lastname,u.email,u.roles,p.roles
                 FROM user u
-                JOIN profil p ON u.roles=p.discr
-                WHERE username LIKE :nom AND email LIKE :email";}
+                JOIN profil p ON u.roles=p.roles
+                WHERE user_lastname LIKE :nom AND email LIKE :email";}
         
 
     // Enregistre la requête préparée
@@ -135,7 +135,7 @@ function list_User(string $nom,string $email,int $profil) {
 
     // Récupérer les enregistrements
     $tUsers = $curseur->fetchAll(PDO::FETCH_ASSOC);
-
+    print_r($tUsers);
     return $tUsers;
 }
 
@@ -227,7 +227,7 @@ function getUserById(int $idUser) {
     $connexion = connexion();
 
     // Préparer la requête SQL
-    $sql = "SELECT * FROM user WHERE id_user = ?";
+    $sql = "SELECT * FROM user WHERE id = ?";
 
     // Enregistrer la requête préparée
     $curseur = $connexion->prepare($sql);
@@ -245,14 +245,14 @@ function updUser(array $user) {
     $connexion = connexion();
     
     // Préparer la requête SQL
-    $sql = "UPDATE user SET nom_user = :nom, prenom_user = :prenom, mdp = :mdp, roles = :profil WHERE id_user = :idUser";
+    $sql = "UPDATE user SET user_firstname = :nom, user_lastname = :prenom, mdp = :mdp, roles = :profil WHERE id = :idUser";
     
     // Enregistrer la requête préparée
     $curseur = $connexion->prepare($sql);
     
     // Exécuter la requête
-    $curseur->execute(["idUser" => $user['idUser'], ":nom"=> $user['nom'], 
-    ":prenom"=> $user['prenom'], ":mdp"=> $user['mdp'], ":profil"=> $user['profil']]);
+    $curseur->execute(["idUser" => $user['id'], ":nom"=> $user['user_firstname'], 
+    ":prenom"=> $user['user_lastname'], ":mdp"=> $user['mdp'], ":profil"=> $user['profil']]);
     
     // Récupérer le nombre d'enregistrements supprimés
     $nbUsers = $curseur->rowCount();

@@ -45,20 +45,23 @@
     <script type="text/javascript" src="public/js/app.js"></script>
 
 </head>
-<<header>
-    <?= $menu; ?>
-    </header>
+<?
+    require_once("vue/view_header.php");
 
+?>
+        <header>
+            <?= $menu = ob_get_clean(); ?>
+        </header>
     <main>
         <?php //if (!empty($action)) { ?>
             <h1><? //$titre; ?></h1>
         <?php //} ?>
-        <?php if (!isset($_SESSION['email'])) { ?>
+        <?php if (isset($_SESSION['email'])) { ?>
             <h1><? $titre; ?></h1>
         <?php }else{ $titre="Page Introuvable";} ?>
-        
-        <?php if (!isset($_SESSION['email'])) { ?>
-            <h1><? $contenu; ?></h1>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <span><?php echo "<br> 04 c) Je suis dans le test email du modele.php"?></span>
+            <sapn><?php echo "la valeur du contenu =".$contenu; ?></sapn>
         <?php }else{ $contenu=" ";} ?>
 
         <?php //if (!empty($action)) {

@@ -3,161 +3,162 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-ob_start();
-?>
+// ob_start();
+// require_once ("modele/modele.inc.users.php");
+// getUserById($user);
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex">
-  <meta name="googlebot" content="noindex">
-  <title>Marathon - Welcome!</title>
+//
+// $contenu = '
+// <head>
+//   <meta charset="UTF-8">
+//   <meta name="robots" content="noindex">
+//   <meta name="googlebot" content="noindex">
+//   <title>Marathon - Welcome!</title>
 
-  <!--Import Google Icon Font-->
+//   <!--Import Google Icon Font-->
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+//   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//   <!--Let browser know website is optimized for mobile-->
+//   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-  <link rel="stylesheet" href="/public/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/app.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+//   <!-- Compiled and minified CSS -->
+//   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+//   <link rel="stylesheet" href="/public/css/materialize.min.css">
+//   <link rel="stylesheet" type="text/css" href="/public/css/app.css">
+//   <link rel="stylesheet" type="text/css" href="/public/css/style.css">
 
-  <!--Import JQuery -->
-  <script src="/public/js/jquery.js"></script>
+//   <!--Import JQuery -->
+//   <script src="/public/js/jquery.js"></script>
 
-  <!-- Materialize -->
-  <script src="/public/js/materialize.min.js"></script>
+//   <!-- Materialize -->
+//   <script src="/public/js/materialize.min.js"></script>
 
-  <!-- Select2 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+//   <!-- Select2 -->
+//   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!-- Signature Pad -->
-  <script src="/public/js/signature-pad.js"></script>
-  <!-- Jquery Mask -->
-  <script src="/public/js/jquery.mask.min.js"></script>
-  <!-- App -->
-  <script type="text/javascript" src="/public/js/app.js"></script>
-
-
-</head>
-
-<body>
-  <!-- <style type="text/css">
-    .row,
-    .input-field {
-      margin-bottom: 5px;
-    }
-
-    .checkbox-horizontal label {
-      margin-right: 20px;
-
-    }
-
-    nav {
-      background-color: red !important;
-    }
+//   <!-- Signature Pad -->
+//   <script src="/public/js/signature-pad.js"></script>
+//   <!-- Jquery Mask -->
+//   <script src="/public/js/jquery.mask.min.js"></script>
+//   <!-- App -->
+//   <script type="text/javascript" src="/public/js/app.js"></script>
 
 
-    @media print and (min-resolution: 50dpi) {
-      body {
+// </head>
 
-        width: 100%
-      }
 
-      nav {
-        display: none;
-      }
+// <body>
+//   <!-- <style type="text/css">
+//     .row,
+//     .input-field {
+//       margin-bottom: 5px;
+//     }
 
-      col s12 {clients.php
-        width: 50%
-      }
-    }
+//     .checkbox-horizontal label {
+//       margin-right: 20px;
 
-    @media only screen and (min-width: 601px) {
-      .container {
-        width: 98%;
-      }
-    }
-  </style> -->
-<nav>
-  <div class="nav-wrapper">
-    <a href="#" data-target="slide-out" class="sidenav-trigger"
-      ><i class="material-icons">menu</i></a
-    >
-    <a href="/" class="brand-logo">GTM MARATHON</a>
+//     }
 
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/vue/Moderators/moderateurs.html">Modérateurs</a></li>
+//     nav {
+//       background-color: red !important;
+//     }
 
-      <li><a href="/vue/Drivers/conducteurs.html">Conducteurs</a></li>
 
-      <li><a href="/vue/Customers/clients.php">Clients</a></li>
+//     @media print and (min-resolution: 50dpi) {
+//       body {
 
-      <li>
-        <a class="dropdown-trigger" href="#!" data-target="dropdown1"
-          >Paramètres<i class="material-icons right">arrow_drop_down</i></a
-        >
-        <ul id="dropdown1" class="dropdown-content" tabindex="0">
-          <li tabindex="0">
-            <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
-          </li>
-          <li tabindex="0">
-            <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
-          </li>
-        </ul>
-      </li>
+//         width: 100%
+//       }
+
+//       nav {
+//         display: none;
+//       }
+
+//       col s12 {users.php
+//         width: 50%
+//       }
+//     }
+
+//     @media only screen and (min-width: 601px) {
+//       .container {
+//         width: 98%;
+//       }
+//     }
+//   </style> -->
+// <nav>
+//   <div class="nav-wrapper">
+//     <a href="#" data-target="slide-out" class="sidenav-trigger"
+//       ><i class="material-icons">menu</i></a
+//     >
+//     <a href="/" class="brand-logo">GTM</a>
+
+//     <ul id="nav-mobile" class="right hide-on-med-and-down">
+//       <li><a href="/vue/Moderators/moderateurs.html">Modérateurs</a></li>
+
+//       <li><a href="/vue/Drivers/conducteurs.html">Conducteurs</a></li>
+
+//       <li><a href="/vue/Customers/users.php">Utilisateurs</a></li>
+
+//       <li>
+//         <a class="dropdown-trigger" href="#!" data-target="dropdown1"
+//           >Paramètres<i class="material-icons right">arrow_drop_down</i></a
+//         >
+//         <ul id="dropdown1" class="dropdown-content" tabindex="0">
+//           <li tabindex="0">
+//             <a href="/vue/Parametres/parametres-mode_paiements.html">Mode de paiment</a>
+//           </li>
+//           <li tabindex="0">
+//             <a href="/vue/Parametres/parametres-type_livraison.html">Types de livraison</a>
+//           </li>
+//         </ul>
+//       </li>
       
-      <li><a href="/vue/Missions/missions.html">Missions</a></li>
+//       <li><a href="/vue/Missions/missions.html">Missions</a></li>
 
 
-      <li><a href="#"><span><?= $_SESSION['email'] ?></span></a></li>
-      <li class="orange">
-        <a href="/modeles/deconnexion.php">
-          Déconnexion
-          <i class="material-icons right"> exit_to_app</i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
-<ul id="slide-out" class="sidenav">
-  <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
+//       <li class="orange">
+//         <a href="/modeles/deconnexion.php">
+//           Déconnexion
+//           <i class="material-icons right"> exit_to_app</i>
+//         </a>
+//       </li>
+//     </ul>
+//   </div>
+// </nav>
 
-  <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
-  <li><a href="/vue/Customers/clients.php">Clients</a></li>
-  <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
-  <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
+// <ul id="slide-out" class="sidenav">
+//   <li><a href="/vue/moderators/moderateurs.php">Modérateurs</a></li>
 
-  <li><a href="/vue/Missions/missions.html">Missions</a></li>
+//   <li><a href="/vue/Drivers/conducteurs.php">Conducteur</a></li>
+//   <li><a href="/vue/Customers/users.php">Utilisateurs</a></li>
+//   <li><a href="/vue/Parametres/parametres-mode_paiements.php">Mode de paiment</a></li>
+//   <li><a href="/vue/Parametres/parametres-type_livraison.php">Types de livraison</a></li>
 
-  <li><a href="/profile/edit">commercial@groupetransportmarathon.fr</a></li>
-  <li class="orange">
-    <a href="/modeles/deconnexion.php">
-      Déconnexion
-      <i class="material-icons right"> exit_to_app</i>
-    </a>
-  </li>
-</ul>
+//   <li><a href="/vue/Missions/missions.html">Missions</a></li>
 
+//   <li><a href="/profile/edit">commercial@groupetransportmarathon.fr</a></li>
+//   <li class="orange">
+//     <a href="/modeles/deconnexion.php">
+//       Déconnexion
+//       <i class="material-icons right"> exit_to_app</i>
+//     </a>
+//   </li>
+// </ul> -->
+
+$contenu =' 
   <main class="container">
-    <h3>Fiche client</h3>
+    <h3>Fiche Utilisateur</h3>
 
-    <a class="btn" href="/vue/Customers/clients.php">Retour vers la liste</a>
+    <a class="btn" href="index.php">Retour vers la liste</a>
 
     <ul class="tabs">
       <li class="tab col s3">
         <a class="active" href="#user">Utilisateur</a>
       </li>
       <li class="tab col s3">
-        <a href="#customerInformation">Information client</a>
-      </li>
-      <li class="tab col s3">
-        <a href="#addresses">
-          Adresses client</a>
+        <a href="#customerInformation">Information Utilisateur</a>
       </li>
       <li class="indicator" style="left: 0px; right: 505px;"></li>
     </ul>
@@ -174,19 +175,19 @@ ob_start();
               <div>
                 <label for="appbundle_customer_firstName" class="active">
 
-                  Prénom
+                  Nom 
 
-                </label><input type="text" id="appbundle_customer_firstName" name="appbundle_customer[firstName]"
-                  maxlength="64" value="Devarenne"
-                  style="background-image: url(&quot;moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png&quot;) !important; background-position: 98% 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position 0s ease 0s, background-size 0s ease 0s !important;">
+                </label><input type="text" id="appbundle_customer_firstName" name="appbundle_customer[firstName]" value = "'.$user['user_firstname'].'"
+                  maxlength="64" style="background-image: url(&quot;moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png&quot;) !important; background-position: 98% 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position 0s ease 0s, background-size 0s ease 0s !important;">
               </div>
-              <div>
+
+                <div>
                 <label for="appbundle_customer_lastName" class="active">
 
-                  Nom
+                  Prenom
 
                 </label><input type="text" id="appbundle_customer_lastName" name="appbundle_customer[lastName]"
-                  maxlength="64" value="Yves"
+                  maxlength="64" value = "'.$user['user_lastname'].'"
                   style="background-image: url(&quot;moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png&quot;) !important; background-position: 98% 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position 0s ease 0s, background-size 0s ease 0s !important;">
               </div>
               <div>
@@ -195,7 +196,7 @@ ob_start();
                   Émail
 
                 </label><input type="email" id="appbundle_customer_email" name="appbundle_customer[email]"
-                  required="required" value="yves@marathon-str.fr"
+                  required="required" value = "'.$user['email'].'"
                   style="background-image: url(&quot;moz-extension://d0548852-754e-4e40-8288-b74358214605/src/images/icons/icon-32.png&quot;) !important; background-position: 98% 50% !important; background-size: 16px 16px !important; background-repeat: no-repeat !important; transition: background-position 0s ease 0s, background-size 0s ease 0s !important;">
               </div>
 
@@ -211,14 +212,14 @@ ob_start();
           <div class="card">
 
             <div class="card-content">
-              <span class="card-title">Nouveau client</span>
+              <span class="card-title">Nouvel Utilisateur</span>
               <div>
                 <label for="appbundle_customer_name" class="required active">
 
                   Nom
 
                 </label><input type="text" id="appbundle_customer_name" name="appbundle_customer[name]"
-                  required="required" maxlength="255" value="MARATHON">
+                  required="required" maxlength="255" value = "'.$user['user_firstname'].'">
               </div>
 
               <div>
@@ -243,7 +244,7 @@ ob_start();
 
                     </label><input type="text" id="appbundle_customer_billingAddress_route"
                       name="appbundle_customer[billingAddress][route]" required="required" maxlength="255"
-                      value="Rue de l'église">
+                      value="Rue de l\'église">
                   </div>
                   <div>
                     <label for="appbundle_customer_billingAddress_locality" class="required active">
@@ -286,7 +287,7 @@ ob_start();
                       E-mail de facturation
 
                     </label><input type="email" id="appbundle_customer_billingAddress_email"
-                      name="appbundle_customer[billingAddress][email]" value="commercial@marathon-str.fr">
+                      name="appbundle_customer[billingAddress][email]" value = "'.$user['email'].'">
                   </div>
                   <div>
                     <label for="appbundle_customer_billingAddress_fax">
@@ -419,9 +420,7 @@ ob_start();
     style=" bottom: 5px !important; right: 5px !important; width: 370px !important; height: auto !important; position: fixed !important; resize: vertical !important; overflow: auto !important; overflow-x: hidden !important; z-index: 2147483647 !important; background: none !important; clip: auto !important; ">
   </div>
 </body>
-</html>
-<?
-$menu = ob_get_clean();
+</html>';
 
 require_once('vue/view_header.php');
 require_once('vue/modele.php');

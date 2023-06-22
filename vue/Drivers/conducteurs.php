@@ -119,7 +119,7 @@ ob_start();
 
       <li><a href="#"></span><?= $_SESSION['email'] ?></a></li>
       <li class="orange">
-        <a href="modeles/deconnexion.php">
+        <a href="/modeles/deconnexion.php">
           Déconnexion
           <i class="material-icons right"> exit_to_app</i>
         </a>
@@ -140,7 +140,7 @@ ob_start();
 
   <li><a href="/profile/edit"></span><?= $_SESSION['email'] ?></a></li>
   <li class="orange">
-    <a href="modeles/deconnexion.php">
+    <a href="/modeles/deconnexion.php">
       Déconnexion
       <i class="material-icons right"> exit_to_app</i>
     </a>
@@ -259,6 +259,7 @@ ob_start();
     "></div>
 </body>';
 <?
+
 $menu = ob_get_clean();
 
 require_once('vue/view_header.php');
