@@ -1,6 +1,6 @@
 <?php
 require_once("modeles/modele.inc.php");
-echo "<br> (01) je suis dans - modele.inc.users - et passe pour la 1ère fois";
+// echo "<br> (01) je suis dans - modele.inc.users - et passe pour la 1ère fois";
 // function listUsers ($email)
 // {
 //     echo "<br> je passe dans function listUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
@@ -28,7 +28,7 @@ echo "<br> (01) je suis dans - modele.inc.users - et passe pour la 1ère fois";
  */
 function connectUser ($email)
 {
-    echo "<br> je passe dans function searchId - modeles/modele.inc.users.php - pour la 1ère fois ";
+    // echo "<br> je passe dans function searchId - modeles/modele.inc.users.php - pour la 1ère fois ";
     {
 
         $mysql = connexion();
@@ -45,7 +45,7 @@ function connectUser ($email)
     }
 }
 function getListUsers(){
-    echo "<br> 05) je passe dans getListUsers de modele.inc.users"; 
+    // echo "<br> 05) je passe dans getListUsers de modele.inc.users"; 
     $connexion=connexion();
 
     //prepare la requête SQL

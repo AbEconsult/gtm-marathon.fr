@@ -96,12 +96,14 @@ ob_start();
     <div classe="nav-wrapper">
     <div class="container">
         <div class="row">
+            <? //echo "<br> ********5.b je suis dans view_header et la div container la valeur de session email =" . $_SESSION['email']; ?>
             <a href="#" class="brand-logo s2 push-s5" id="compagny">GTM</a>
-                        <?php if ($_SESSION['roles'] === "admin") { ?>
-            
-                
+            <!-- <? //echo "<br> ********10 je ne passe dans le test view_header pour la 1ère fois "; ?> -->
+            <?php if ($_SESSION['roles'] === "admin") { ?>
+                <!-- <? //echo "<br> ********10 je passe dans view_header pour la 1ère fois et tUsers =" . $tUsers[0]; -->
+                ?>
                 <div class="right hide-on-med-and-down s2-pull-s3">
-                    <span class="m-2">
+                    <span class="m-2"> -->
                     <!-- <i class="fa-solid fa-user mt-2"></i> -->
                     <span class=""><? $_SESSION['email'] ?></span>
 

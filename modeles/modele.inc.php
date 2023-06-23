@@ -9,7 +9,7 @@ function connexion()
     $Param = parse_ini_file("param/marathon.ini", true);
     extract($Param["BDD"]);
     $dsn = "mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname . "; charset=utf8";
-    echo "<br> (**********1) je suis connecté à la base marathon";
+    // echo "<br> (**********1) je suis connecté à la base marathon";
     try {
         
         $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
@@ -32,7 +32,7 @@ function connexion()
  */
 function getConnexion(string $email) {
     $mysql = connexion();
-    echo "<br> (**********2) je récupère la connexion à la base marathon - dans getconnexion(email)";
+    // echo "<br> (**********2) je récupère la connexion à la base marathon - dans getconnexion(email)";
     $sql = "SELECT user_lastname,u.email, pwd, u.roles, p.roles FROM user u 
                 INNER JOIN profil p ON u.id = p.id 
             WHERE u.email = :email";
@@ -42,7 +42,7 @@ function getConnexion(string $email) {
     $tUsers = $recupUser->fetchAll(PDO::FETCH_ASSOC);
 
     $recupUser->closeCursor();
-    echo "<br> (**********3) je récupère la valeur de tUsers depuis la base marathon - dans getconnexion(email)";
+    // echo "<br> (**********3) je récupère la valeur de tUsers depuis la base marathon - dans getconnexion(email)";
 
     $mysql = null;
     

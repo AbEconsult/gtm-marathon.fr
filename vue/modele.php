@@ -46,11 +46,13 @@
 
 </head>
 <?
-    require_once("vue/view_header.php");
+    // require_once("vue/view_header.php");
 
 ?>
         <header>
-            <?= $menu = ob_get_clean(); ?>
+        <?php if (isset($menu)) { ?>
+            <?= $menu ?>
+            <?php } ?>
         </header>
     <main>
         <?php //if (!empty($action)) { ?>
@@ -60,8 +62,8 @@
             <h1><? $titre; ?></h1>
         <?php }else{ $titre="Page Introuvable";} ?>
         <?php if (isset($_SESSION['email'])) { ?>
-            <span><?php echo "<br> 04 c) Je suis dans le test email du modele.php"?></span>
-            <sapn><?php echo "la valeur du contenu =".$contenu; ?></sapn>
+            <!-- <span><?php //echo "<br> 04 c) Je suis dans le test email du modele.php"?></span>
+            <sapn><?php // echo "la valeur du contenu =".$contenu; ?></sapn> -->
         <?php }else{ $contenu=" ";} ?>
 
         <?php //if (!empty($action)) {
