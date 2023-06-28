@@ -7,6 +7,7 @@ if (!isset($_SESSION)) {
 // echo "<br> (02 b) je pars dans - modeles/modele.inc pour la connexion à la base de données";
 require_once("modeles/modele.inc.php");
 // echo "<br> (03 ) je reviens dans - controllers/controlConnexion - pour la 2eme fois, après avoir chargé la fonction connexion() de modele.inc et test le login-btn";
+require_once("vue/view_connexion.php");
 
 
 if (isset($_POST['login-btn'])) {
@@ -50,6 +51,5 @@ if (isset($_POST['login-btn'])) {
         </script><?php
     }
 }
-            require_once("vue/view_connexion.php");
             // echo "<br> (5) je vais dans - vue/view_Connexion - pour la 1ere fois, après contolConnexion et test le login-btn";        
                     ?>

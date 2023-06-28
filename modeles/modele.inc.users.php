@@ -1,6 +1,7 @@
 <?php
 require_once("modeles/modele.inc.php");
 // echo "<br> (01) je suis dans - modele.inc.users - et passe pour la 1ère fois";
+// echo "<br> (01 a) je suis dans - modele.inc.users - et la fonction demandée est = ";
 // function listUsers ($email)
 // {
 //     echo "<br> je passe dans function listUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
@@ -47,7 +48,7 @@ function connectUser ($email)
 function getListUsers(){
     // echo "<br> 05) je passe dans getListUsers de modele.inc.users"; 
     $connexion=connexion();
-
+    // echo"<br> je passe dans getlistUsers depuis modele.inc.users";
     //prepare la requête SQL
     $sql = "SELECT id,user_firstname,user_lastname,email,roles
             FROM user ORDER BY id";
@@ -64,11 +65,40 @@ function getListUsers(){
     $connexion = null;
 
     // retourn le tableau
-
+    // print_r($record);
     return $record;
 }
 
-function addUser(string $nom, string $prenom, int $profil, string $email, string $mdp) {
+/**
+ * Undocumented function
+ *
+ * @param string $nom_user
+ * @param string $email_user
+ * @param string $roles_user
+ * 
+ */
+function searchUsers(string $nom_user,string $email_user, string $roles_user)
+{
+    // echo "<br> je passe dans function searchUsers - modeles/modele.inc.users.php - pour la 1ère fois ";
+
+    $mysql = connexion();
+
+    $sql = "SELECT * FROM user WHERE user_firstname LIKE :nom AND  email LIKE :mail AND  roles LIKE :roles ";
+    // var_dump($mysql);
+
+    $reponse = $mysql->prepare($sql);
+
+    $reponse->execute([":nom" => '%' . $nom_user . '%', ":mail" => '%' . $email_user . '%', ":roles" => '%' . $roles_user . '%']);
+    $resultatsR = $reponse->fetchAll(PDO::FETCH_ASSOC);
+
+    $reponse->closeCursor();
+    $mysql=null;
+
+    return $resultatsR;
+
+}
+
+function addUser(string $nom_user, string $prenom_user, string $roles, string $email_user, string $mdp) {
     $connexion = connexion();
 
     // Préparer la requête SQL
@@ -79,7 +109,7 @@ function addUser(string $nom, string $prenom, int $profil, string $email, string
     $request = $connexion->prepare($sql1);
 
     //Exécute la requête 1
-    $request->execute(array('email'=>$email));
+    $request->execute(array('email'=>$email_user));
     $count = $request->rowCount();
 
     if($count){
@@ -90,7 +120,7 @@ function addUser(string $nom, string $prenom, int $profil, string $email, string
 
         //Exécute la requête 2
         try {
-            $res = $curseur->execute([$nom,$prenom,$profil,$email,$mdp]);
+            $res = $curseur->execute([$nom_user,$prenom_user,$roles,$email_user,$mdp]);
 
         }catch(PDOException $e){
             $res = false;
@@ -107,42 +137,45 @@ function addUser(string $nom, string $prenom, int $profil, string $email, string
     }
 }
 
-function list_User(string $nom,string $email,int $profil) {
+function list_User(string $nom_user,string $email_user,string $roles) {
+    
     $mysql = connexion();
-
     // Préparer la requête SQL
-    if ($profil!=""){
+    if ($roles!=""){
+        echo "<br> ********1 je passe dans function listUser et teste si roles = vide - modeles/modele.inc.users.php - pour la 1ère fois ";
         $sql = "SELECT u.id,u.user_lastname,u.email,u.roles,p.discr
                 FROM user u
-                JOIN profil p ON u.roles=p.roles
+                JOIN roles p ON u.roles=p.roles
                 WHERE user_lastname LIKE :nom AND email LIKE :email AND u.roles = :roles;";}
     else {
+        echo "<br> ********1 a je passe dans function listUser et teste si roles = non vide - modeles/modele.inc.users.php - pour la 1ère fois ";
         $sql = "SELECT u.id,u.user_lastname,u.email,u.roles,p.roles
                 FROM user u
-                JOIN profil p ON u.roles=p.roles
+                JOIN roles p ON u.roles=p.roles
                 WHERE user_lastname LIKE :nom AND email LIKE :email";}
         
 
-    // Enregistre la requête préparée
-    $curseur = $mysql->prepare($sql);
-
-    //Exécute la requête
-    if ($profil!=0){
-        $curseur->execute([":nom"=>"%$nom%",":email"=>"%$email%",":profil"=>$profil]);}
-    else {
-        $curseur->execute([":nom"=>"%$nom%",":email"=>"%$email%"]);}
-    
-
-    // Récupérer les enregistrements
-    $tUsers = $curseur->fetchAll(PDO::FETCH_ASSOC);
-    print_r($tUsers);
-    return $tUsers;
-}
-
-/**
- * Renvoi le nombre d'administrateur dans la bdd
- * @return int
- */
+        // Enregistre la requête préparée
+        $curseur = $mysql->prepare($sql);
+        
+        //Exécute la requête
+        if ($roles!=0){
+            $curseur->execute([":nom"=>"%$nom_user%",":email"=>"%$email_user%",":roles"=>$roles]);}
+            else {
+                $curseur->execute([":nom"=>"%$nom_user%",":email"=>"%$email_user%"]);}
+                
+                
+                // Récupérer les enregistrements
+                $tUsers = $curseur->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($tUsers);
+                echo "<br> je passe dans function list_User - modeles/modele.inc.users.php - pour la 1ère fois ";
+                return $tUsers;
+            }
+            
+            /**
+             * Renvoi le nombre d'administrateur dans la bdd
+             * @return int
+             */
 function countAdmin() {
     $connexion = connexion();
 
@@ -156,7 +189,7 @@ function countAdmin() {
     return $nbAdmin;
 }
 
-function delUser(int $idUser, int $idProfil) {
+function delUser(int $idUser, int $idroles) {
     $connexion = connexion();
 
     $nbAdmin = countAdmin();
@@ -191,7 +224,7 @@ function delUser(int $idUser, int $idProfil) {
                 // Enregistrer la requête préparée
                 $curseur = $connexion->prepare($sql);
 
-                if ($idProfil === 'admin' AND $nbAdmin < 2) {
+                if ($idroles === 'admin' AND $nbAdmin < 2) {
                     // Fermer le curseur / resultset
                     $curseur->closeCursor();
     
@@ -224,6 +257,7 @@ function delUser(int $idUser, int $idProfil) {
 }
 
 function getUserById(int $idUser) {
+    echo "<br> *******4 je passe dans getUserById";
     $connexion = connexion();
 
     // Préparer la requête SQL
@@ -238,6 +272,7 @@ function getUserById(int $idUser) {
     // Récupérer les enregistrements
     $user = $curseur->fetch(PDO::FETCH_ASSOC);
 
+
     return $user;
 }
 
@@ -245,14 +280,14 @@ function updUser(array $user) {
     $connexion = connexion();
     
     // Préparer la requête SQL
-    $sql = "UPDATE user SET user_firstname = :nom, user_lastname = :prenom, mdp = :mdp, roles = :profil WHERE id = :idUser";
+    $sql = "UPDATE user SET user_firstname = :nom, user_lastname = :prenom, mdp = :mdp, roles = :roles WHERE id = :idUser";
     
     // Enregistrer la requête préparée
     $curseur = $connexion->prepare($sql);
     
     // Exécuter la requête
     $curseur->execute(["idUser" => $user['id'], ":nom"=> $user['user_firstname'], 
-    ":prenom"=> $user['user_lastname'], ":mdp"=> $user['mdp'], ":profil"=> $user['profil']]);
+    ":prenom"=> $user['user_lastname'], ":mdp"=> $user['mdp'], ":roles"=> $user['roles']]);
     
     // Récupérer le nombre d'enregistrements supprimés
     $nbUsers = $curseur->rowCount();
@@ -266,4 +301,5 @@ function updUser(array $user) {
     // Retourner un booléen (VRAI si 1 seul contact modifié)
     return ($nbUsers === 1);
 }
+
 ?>

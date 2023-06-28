@@ -33,7 +33,7 @@ if (!isset($UserList)) {
         . "</br>Prenom : " . $users['user_lastname']
         . "</br>Email : " . $users['email']
         . "</br>Profil : " . $users['roles']
-        . "<hr>"
+        // . "<hr>"
         . "<form action='index.php' method='post'></br>"
         . "<input type='submit' name='action' value='modifier'>"
         . "<input type='submit' name='action' value='supprimer'></br>"

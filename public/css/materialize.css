@@ -2932,6 +2932,7 @@ table.highlight > tbody > tr:hover {
 
 table.centered thead tr th, table.centered tbody tr td {
   text-align: center;
+  width:auto;
 }
 
 thead {

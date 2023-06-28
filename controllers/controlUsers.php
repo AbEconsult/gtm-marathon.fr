@@ -1,7 +1,8 @@
 <?php
+// echo "<br> 03 ) je suis dans controlUsers et je vais dans modele.inc.users";
 // je charge les fonctions de modele.ic.users 
 require_once("modeles/modele.inc.users.php");
-// echo "<br> 03 ) je passe dans modele.in.users ";
+// echo "<br> 03 a) je suis dans controlUsers et passe dans modele.inc.users ";
 $action = 'accueil';
 
 if (!empty($_GET['action'])) {
@@ -10,14 +11,17 @@ if (!empty($_GET['action'])) {
 if (!empty($_POST['action'])) {
     $action = $_POST['action'];
 }
+$nom_user = "";
+$email_user = "";
+$roles = "";
 
 // echo "<br> 03 a) la valeur de action dans controlUsers = " . $action;
-// var_dump($_POST['action']);
+
 
 switch ($action) {
 
     case 'accueil':
-        // echo "<br>accueil-1 : je passe par défaut la list des users car action=accueil";
+        // echo "<br>accueil-1 : je passe par défaut la list des users car action = ".$action;
         // 1 - récupérer la liste des utilisateurs
         // echo "<br>accueil-2 : je récupère la list des users car action=accueil et je vais dans view_accueil *";
         // $tUsers = getlistUsers();
@@ -25,7 +29,7 @@ switch ($action) {
         // echo "<br>controlUsers-2 b:la valeur tableau de tUsers = " . print_r($tUsers);
         // 2 - afficher la liste des utilisateurs
         $titre = "accueil";
-        // $contenu="";
+        $contenu="";
         // echo "<br> 4ème passage";
         
         // require_once("vue/view_listUsers.php");
@@ -35,7 +39,7 @@ switch ($action) {
         // require_once("vue/view_header.php");
         break;
     case 'list_Users':
-        // echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
+        echo "<br>controlUsers-1 : je passe par défaut la list des users car action=list_users";
         // 1 - récupérer la liste des utilisateurs
         // echo "<br>controlUsers-2 : je récupère la list des users car action=list_users et je vais dans view_listUsers dans modele_user";
         $tUsers = getlistUsers();
@@ -58,14 +62,14 @@ switch ($action) {
         break;
 
     case 'MAJajoutUser':
-        $nom = strtoupper($_POST['user_firstname']);
-        $prenom = ucfirst(strtolower($_POST['user_lastname']));
+        $nom_user = strtoupper($_POST['user_firstname']);
+        $prenom_user = ucfirst(strtolower($_POST['user_lastname']));
         $roles = $_POST['roles'];
-        $email = strtolower($prenom . '.' . $nom . '@gtm-marathon.fr');
+        $email_user = strtolower($prenom_user . '.' . $nom_user . '@gtm-marathon.fr');
         $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
         // 2 - Enregistrer le nouveau user dans la BDD
-        $resultat = insUser($nom, $prenom, $roles, $email, $pwd);
+        $resultat = insUser($nom_user, $prenom_user, $roles, $email_user, $pwd);
 
         // 3 - Afficher le résultat à l'utilisateur
         $titre = "Ajout d'un utilisateur";
@@ -73,28 +77,60 @@ switch ($action) {
         require_once("Vue/view_resultatUser.php");
         break;
 
-    case 'listUsers':
+    case 'searchUsers':
         // 1 - Afficher un formulaire
+
+        // require_once("modeles/modele.inc.users.php");
+
+        // print_r($ResultatR);
+
         $titre = "Rechercher un utilisateur";
-        $tUsers = listUsers($email);
-        require_once("Vue/view_formUser.php");
+        searchUsers($nom_user,$email_user,$roles);
+        // var_dump($tUsers);
+
+        // echo "<br>controlUsers-2 a: je récupère la list des users car action=searchUsers et je vais dans moderateurs et tUsers = ";
+        require_once("vue/Moderators/moderateurs.php");
         break;
 
-    case 'MAJlistUsers':
+    case 'MAJsearchUsers':
         // 1 - Récupérer les données de la recherche
-        $nom = strtoupper($_POST['user_firstname']);
-        $prenom = ucfirst(strtolower($_POST['user_lastname']));
+        $nom_user = strtoupper($_POST['user_firstname']);
+        $prenom_user = ucfirst(strtolower($_POST['user_lastname']));
         $roles = $_POST['roles'];
-        $email = strtolower($_POST['email']);
+        $email_user = strtolower($_POST['email']);
 
         // 2 - Rechercher les utilisateurs correspondants dans la BDD
-        $tUsers = addUser($nom, $prenom, $roles, $email, $pwd);
+        $tUsers = addUser($nom_user, $prenom_user, $roles, $email_user, $pwd);
 
         // 3 - Afficher les utilisateurs correspondants
         $titre = "Liste des utilisateurs trouvés :";
         require_once("Vue/view_listUsers.php");
         break;
 
+        case 'searchMod':
+            // 1 - Afficher un formulaire
+    
+            require_once("modeles/modele.inc.users.php");
+            $titre = "Rechercher un utilisateur";
+
+            // echo "<br>controlUsers-2 a: je récupère la list des users car action=searchMod et je vais dans moderateurs et tUsers = ".$tModes;
+            require_once("vue/Moderators/moderateurs.php");
+            break;
+    
+        case 'MAJsearchMod':
+            // 1 - Récupérer les données de la recherche
+            $nom_user = strtoupper($_POST['user_firstname']);
+            $prenom_user = ucfirst(strtolower($_POST['user_lastname']));
+            $roles = $_POST['roles'];
+            $email_user = strtolower($_POST['email']);
+    
+            // 2 - Rechercher les utilisateurs correspondants dans la BDD
+            $tUsers = addUser($nom_user, $prenom_user, $roles, $email_user, $pwd);
+    
+            // 3 - Afficher les utilisateurs correspondants
+            $titre = "Liste des utilisateurs trouvés :";
+            require_once("Vue/view_listUsers.php");
+            break;
     case 'supprimer':
         // 1 - Récupérer l'identifiant de l'utilisateur
         $id_user = $_POST['id'];
@@ -109,21 +145,22 @@ switch ($action) {
         require_once("Vue/view_resultatUser.php");
         break;
 
-    case 'modifier':
+    case 'modifierUsers':
         // 1 - Récupérer l'identifiant du user
-        echo " <br> 03 b) le numéro d'ID selectionné est le = " . ($_POST['id']);
-        $id_user = $_POST['id'];
+        $id_user=$_POST['idUser'];
+        echo " <br> 03 b) le numéro d'ID selectionné est le = " . $id_user;
 
         // 2 - Récupérer les infos du user
-        $user = getUserById($id_user);
-        var_dump($user);
+
+        $user=getUserById($id_user);
+        // var_dump($users);
 
         // afficher le formulaire prérempli
         $titre = "Modifier un utilisateur";
         require("vue/Users/view_modifUsers.php");
         break;
 
-    case 'MAJmodifier':
+    case 'MAJmodifierUsers':
         // 1 - Récupérer l'identifiant du user
         $id_user = $_POST['id'];
 

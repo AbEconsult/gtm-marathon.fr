@@ -50,16 +50,41 @@
 
 ?>
         <header>
-            <?echo "action =".$action?>
         <?php if (isset($menu)) { ?>
             <?= $menu ?>
             <?php } ?>
         </header>
-            <?$titre?>
-        <main>
-    <?php if (!empty($action)) { ?>
-              <?= $contenu; ?>
-        <?php }else{ $contenu="";} ?> 
+    <main>
+        <?php //if (!empty($action)) { ?>
+            <h1><? //$titre; ?></h1>
+        <?php //} ?>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <h1><? $titre; ?></h1>
+        <?php }else{ $titre="Page Introuvable";} ?>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <span><?php //echo "<br> 04 c) Je suis dans le test email du modele.php"?></span>
+            <span><?php echo "la valeur du contenu =".$contenu; ?></span>
+        <?php }else{ $contenu=" ";} ?>
+
+        <header>
+        <?php if (isset($menu)) { ?>
+            <?= $menu ?>
+            <?php } ?>
+        </header>
+    <main>
+        <?php //if (!empty($action)) { ?>
+            <h1><? //$titre; ?></h1>
+        <?php //} ?>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <h1><? $titre; ?></h1>
+        <?php }else{ $titre="Page Introuvable";} ?>
+        <?php if (isset($_SESSION['email'])) { ?>
+            <span><?php //echo "<br> 04 c) Je suis dans le test email du modele.php"?></span>
+            <span><?php echo "la valeur du contenu =".$contenu; ?></span>
+        <?php }else{ $contenu=" ";} ?> 
+        
+        
+
     </main>
     <?
     // if (isset($_SESSION['email'])) {

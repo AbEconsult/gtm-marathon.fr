@@ -3,6 +3,7 @@ RewriteEngine on
 
 RewriteRule ^accueil$ index.php [L]
 
+RewriteRule ^modifier-user$ index.php?action=modifierUsers [L]
 RewriteRule ^list_Users$ index.php?action=list_Users [L]
 RewriteRule ^ajouter-utilisateur$ index.php?action=addUser [L]
 RewriteRule ^rechercher-utilisateur$ index.php?action=searchUsers [L]

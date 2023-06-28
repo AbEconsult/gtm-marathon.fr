@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
+echo "<br> 04) je passe dans view_modifUsers";
 // ob_start();
 // require_once ("modele/modele.inc.users.php");
 // getUserById($user);
@@ -147,6 +147,7 @@ if (!isset($_SESSION)) {
 //   </li>
 // </ul> -->
 
+
 $contenu =' 
   <main class="container">
     <h3>Fiche Utilisateur</h3>
@@ -165,7 +166,7 @@ $contenu ='
 
     <div class="row form-mod" mod="edit">
 
-      <form name="appbundle_customer" method="post" autocomplete="off">
+      <form name="appbundle_customer" method="post" id="modifUsers" autocomplete="off">
 
         <div id="user" class="active">
           <div class="card">

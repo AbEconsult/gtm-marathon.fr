@@ -4,8 +4,8 @@ if (!isset($_SESSION)) {
   // echo "<br> (6.a) je passe dans login - pour la 1ère fois ";
   session_start();
 }
-// echo "<br> (6.b) je suis dans - view_connexion - et passe pour la 1ère fois avoir été identifié";
-ob_start();
+echo "<br> (6.b) je suis dans - view_connexion - et passe pour la 1ère fois avoir été identifié";
+// ob_start();
 
 ?>
 <!DOCTYPE html>
@@ -112,31 +112,28 @@ ob_start();
     }
   </style>
   <nav>
-    <?php
-    // if (!isset($_SESSION)) {
-      
-    //   session_start();
- // }
+    <!-- <?php
+    // if (isset($_SESSION)) {
+      // 
+    ?> -->
+      <div class="nav-wrapper">
+        <a href="#" data-target="slide-out" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <a href="index.php" class="brand-logo">GTM</a>
 
-  ?>
-    <div class="nav-wrapper">
-      <a href="#" data-target="slide-out" class="sidenav-trigger">
-        <i class="material-icons">menu</i>
-      </a>
-      <a href="index.php" class="brand-logo">GTM</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <span></span>
 
-        <span></span>
+          <li>
+            <a href="index.php" class="blue">GTM</a>
+          </li>
 
-        <li>
-          <a href="index.php" class="blue">GTM</a>
-        </li>
-
-      </ul>
-    </div>
+        </ul>
+      </div>
   </nav>
-<!-- 
+  <!-- 
   <ul id="slide-out" class="sidenav">
 
     <li>
@@ -171,19 +168,17 @@ ob_start();
     </div>
   </form>
 
-  <?php if(!empty($loginError)){?>
-  <div class="text-danger"><?=$loginError;?></div>
-  <?php }?>
-  
+  <?php if (!empty($loginError)) { ?>
+    <div class="text-danger"><?= $loginError; ?></div>
+  <?php } ?>
+
   <!-- <main class="container"></main> -->
 
 </body>
+
 </html>
 <?
-
-$contenu = ob_get_clean();
-
-require_once("vue/view_header.php");
-require_once('vue/modele.php');
-
-
+// }
+// $contenu = ob_get_clean();
+// require_once("vue/view_header.php");
+// require_once('vue/modele.php');
